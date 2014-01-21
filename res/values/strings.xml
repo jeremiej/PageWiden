@@ -43,4 +43,9 @@
 	<string name="webcam_title">Webcam</string>
 	<string name="porte_title">Porte d\'entrée</string>
 	<string name="etat_porte_title">Etat: </string>
+	<string name="peluche_title">Peluche</string>
+	<string name="list_scenario_title">Scénarios actifs</string>
+	<string name="peluche_launch_video">Passez un livre à proximité de la \npeluche pour lancer la vidéo</string>
+	<string name="no_activ_scenario">Aucun scénario actif</string>
+	
 </resources>

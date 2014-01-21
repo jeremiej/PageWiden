@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"  
+	android:background="#dddddd">
+    
+    <TextView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#48bdec"
+        android:textSize="35sp"
+        android:background="#d2d2d2"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="@string/list_scenario_title"/>
+    
+    <ListView 
+        android:id="@+id/scenario_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+    
+    <TextView 
+        android:id="@+id/no_activ_scenario"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:textSize="25sp"
+        android:textColor="#7d8083"
+        android:paddingBottom="30dp"
+        android:text="@string/no_activ_scenario"/>
+
+</LinearLayout>

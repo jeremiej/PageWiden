@@ -63,8 +63,8 @@ public class MonStudioFragmentContainer extends Fragment {
 		final Context context = this.getActivity().getApplicationContext();
 		ScenarioList scenarioList = ScenarioList.get(getActivity().getApplicationContext());
 		gridArray = scenarioList.getScenarioArray();
-		customGridAdapter = new CustomGridViewAdapter(context, R.layout.studio_gridrow_layout, gridArray);
 		customGridAdapter.notifyDataSetChanged();
 		super.onResume();
 	}
+
 }

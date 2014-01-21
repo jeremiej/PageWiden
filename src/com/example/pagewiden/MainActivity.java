@@ -46,7 +46,7 @@ public class MainActivity extends FragmentActivity implements
 		
 		Intent intent = getIntent();
 		targetTab = intent.getIntExtra("targetTab", 999);
-
+		
 		// Set up the action bar.
 		final ActionBar actionBar = getActionBar();
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
@@ -81,6 +81,9 @@ public class MainActivity extends FragmentActivity implements
 					.setText(mSectionsPagerAdapter.getPageTitle(i))
 					.setTabListener(this));
 		}
+		
+		if(targetTab!=999)
+			actionBar.setSelectedNavigationItem(targetTab);
 	}
 	
 	@Override

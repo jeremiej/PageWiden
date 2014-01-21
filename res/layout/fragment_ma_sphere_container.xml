@@ -1,0 +1,72 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
+    android:baselineAligned="false"
+    android:orientation="horizontal" >
+    
+	<LinearLayout 
+	    android:layout_width="0dp"
+	    android:layout_height="match_parent"
+	    android:layout_weight="1" 
+	    android:layout_marginTop="16dp"
+	    android:layout_marginLeft="16dp"
+	    android:layout_marginRight="16dp"
+	    android:baselineAligned="false"
+	    android:orientation="vertical"  >
+	    
+	    <FrameLayout
+	        android:id="@+id/webcam_container"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content" />
+	    
+   	    <FrameLayout
+	        android:id="@+id/scenario_list_container"
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	   		android:layout_marginTop="16dp"
+			android:layout_marginBottom="16dp"   />
+	    
+    </LinearLayout>
+    
+    <LinearLayout 
+	    android:layout_width="0dp"
+	    android:layout_height="match_parent"
+	    android:layout_weight="1"
+	    android:orientation="vertical" 
+	    android:layout_marginTop="16dp" 
+	    android:layout_marginRight="16dp" >    
+		    
+        <LinearLayout 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:baselineAligned="false">
+		    
+    	    <FrameLayout
+		        android:id="@+id/porte_container"
+		        android:layout_width="match_parent"
+		        android:layout_height="match_parent"
+		        android:layout_weight="1" />
+            
+   		    <FrameLayout
+		        android:id="@+id/barometre_container"
+		        android:layout_width="match_parent"
+		        android:layout_height="match_parent"
+		        android:layout_weight="1" 
+	    		android:layout_marginLeft="16dp" />
+    	    
+        </LinearLayout>
+    	    
+   	    <FrameLayout
+	        android:id="@+id/peluche_container"
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+    		android:layout_marginTop="16dp"
+    		android:layout_marginBottom="16dp" />
+    	    
+	</LinearLayout>
+
+</LinearLayout>
