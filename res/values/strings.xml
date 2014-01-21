@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Page Widen</string>
+    <string name="action_settings">Settings</string>
+    <string name="login_placeholder">Enter your login</string>
+    <string name="password_placeholder">Enter your password</string>
+    <string name="login_text_button">Login</string>
+    <string name="title_activity_main">Page Widen</string>
+    <string name="title_section1">Ma sphère</string>
+    <string name="title_section2">Mon studio</string>
+    <string name="title_section3">Mon store</string>
+    <string name="user_name_action">user_name</string>
+    <string name="title_activity_scenario_details">Détails du scénario</string>
+    <string name="scenario_declencheur_titre">Déclenchement du scénario</string>
+    <string name="trigger_object_title">Objet</string>
+    <string name="trigger_param_title">Paramètres</string>
+    <string name="scenario_actions_titre">Scénario</string>
+    <string name="switch_activation">Activer le scénario</string>
+    <string name="button_launch_scenario">Lancer maintenant</string>
+    <string name="menu_add_scenario">Ajouter </string>
+    <string name="scenario_add_title">Ajouter un scénario</string>
+    <string name="scenario_edit_name_placeholder">Nom du scénario</string>
+    <string name="scenario_edit_description_placeholder">Description du scénario</string>
+    <string name="scenario_edit_name_validation_button">Valider</string>
+    <string name="scenario_edit_trigger_validation_button">Valider</string>
+    <string name="scenario_edit_block_validation_button">Valider</string>
+    <string name="scenario_edit_block_continue_button">Définir un autre bloc</string>
+    <string name="scenario_edit_name_title">Définissez ici le nom ainsi que la description de votre nouveau scénario</string>
+    <string name="title_activity_edition_scenario_nom">Editeur de scénario: nom et description</string>
+    <string name="title_activity_edition_scenario_declencheur">Editeur de scénario: déclencheur</string>
+    <string name="title_activity_edition_scenario_block">Editeur de scénario: blocs de scénario</string>
+    <string name="scenario_edit_trigger_title">Définissez ici le déclenchement du scénario</string>
+    <string name="scenario_edit_block_title">Définissez ici chaque bloc constituant votre scénario</string>
+    <string name="scenario_edit_block_object_title">Objet</string>
+    <string name="switch_declencheur">Déclenchement par l\'utilisateur</string>
+    <string name="declenchement_utilisateur">Utilisateur</string>
+    <string name="declenchement_objet">Objet</string>
+    <string name="title_myobject_list">MyObjects</string>
+    <string name="title_myobject_detail">MyObject Detail</string>
+    <string name="download_scenario">Télécharger\nle scénario</string>
+
+</resources>

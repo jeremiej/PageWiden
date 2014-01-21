@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="50dp"
+    android:paddingRight="50dp" >
+    
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/scenario_edit_trigger_title"
+        android:paddingTop="20sp"
+        android:textColor="#48bdec"
+        android:textSize="35sp"/>
+    
+    <RadioGroup
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="30dp" >
+	    <RadioButton
+	        android:id="@+id/declenchement_utilisateur"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:onClick="onRadioButtonClicked"
+	        android:text="@string/declenchement_utilisateur"
+        	android:textSize="25sp"/>
+	    <RadioButton
+	        android:id="@+id/declenchement_objet"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:onClick="onRadioButtonClicked"
+	        android:text="@string/declenchement_objet" 
+       		android:textSize="25sp"
+       		android:layout_marginLeft="30dp"/>
+    </RadioGroup>
+    
+    <Spinner 
+        android:id="@+id/scenario_edit_trigger_object_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="207dp"/>
+    
+    <Spinner 
+        android:id="@+id/scenario_edit_trigger_action_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="207dp"/>    
+    
+    <Spinner 
+        android:id="@+id/scenario_edit_trigger_param_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="207dp"/>
+    
+    <Button 
+        android:id="@+id/scenario_edit_validation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/scenario_edit_trigger_validation_button"
+        android:textSize="25sp"
+        android:layout_marginTop="30dp"/>
+
+</LinearLayout>
