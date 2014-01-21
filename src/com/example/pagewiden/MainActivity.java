@@ -2,7 +2,7 @@ package com.example.pagewiden;
 
 import java.util.Locale;
 
-import com.example.pagewiden.fragments.MaSphereFragmentContainer;
+import com.example.pagewiden.fragments.MaSphereContainerFragment;
 import com.example.pagewiden.fragments.MonStoreFragmentContainer;
 import com.example.pagewiden.fragments.MonStudioFragmentContainer;
 import com.example.pagewiden.model.User;
@@ -124,7 +124,7 @@ public class MainActivity extends FragmentActivity implements
 	 */
 	public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
-		MaSphereFragmentContainer maSphere;
+		MaSphereContainerFragment maSphere;
 		MonStudioFragmentContainer monStudio;
 		MonStoreFragmentContainer monStore;
 
@@ -136,7 +136,7 @@ public class MainActivity extends FragmentActivity implements
 		public Fragment getItem(int position) {
 	        switch (position) {
 		        case 0:
-		        	return Fragment.instantiate(getApplicationContext(), MaSphereFragmentContainer.class.getName());
+		        	return Fragment.instantiate(getApplicationContext(), MaSphereContainerFragment.class.getName());
 		        case 1:
 		        	return Fragment.instantiate(getApplicationContext(), MonStudioFragmentContainer.class.getName());
 		        case 2:

@@ -39,5 +39,8 @@
     <string name="title_myobject_list">MyObjects</string>
     <string name="title_myobject_detail">MyObject Detail</string>
     <string name="download_scenario">Télécharger\nle scénario</string>
-
+	<string name="barometre_title">Baromètre</string>
+	<string name="webcam_title">Webcam</string>
+	<string name="porte_title">Porte d\'entrée</string>
+	<string name="etat_porte_title">Etat: </string>
 </resources>

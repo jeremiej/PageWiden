@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_porte"
+    android:layout_width="250dp"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:layout_marginTop="15dp"
+    android:layout_gravity="center">
+    
+    <TextView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#48bdec"
+        android:textSize="35sp"
+        android:background="#d2d2d2"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="@string/porte_title"/>
+    
+	<ToggleButton 
+	    android:id="@+id/toggle_porte"
+	    android:layout_width="150dp"
+	    android:layout_height="wrap_content"
+       	android:textOn="Dévérouiller"
+    	android:textOff="Vérouiller"
+    	android:textSize="20sp"
+    	android:layout_margin="10dp"
+    	android:layout_gravity="center"/>
+        
+</LinearLayout>

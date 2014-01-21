@@ -27,45 +27,52 @@ public final class R {
         public static final int ampoule=0x7f020000;
         public static final int chauffage=0x7f020001;
         public static final int check=0x7f020002;
-        public static final int horloge=0x7f020003;
-        public static final int ic_action_edit=0x7f020004;
-        public static final int ic_action_new=0x7f020005;
-        public static final int ic_launcher=0x7f020006;
-        public static final int indicateur_bleu=0x7f020007;
-        public static final int indicateur_gris=0x7f020008;
-        public static final int indicateur_rouge=0x7f020009;
-        public static final int indicateur_vert=0x7f02000a;
-        public static final int repas=0x7f02000b;
-        public static final int tasse=0x7f02000c;
-        public static final int utilisateur=0x7f02000d;
-        public static final int verrou=0x7f02000e;
+        public static final int cle=0x7f020003;
+        public static final int goutte=0x7f020004;
+        public static final int horloge=0x7f020005;
+        public static final int ic_action_edit=0x7f020006;
+        public static final int ic_action_new=0x7f020007;
+        public static final int ic_launcher=0x7f020008;
+        public static final int indicateur_bleu=0x7f020009;
+        public static final int indicateur_gris=0x7f02000a;
+        public static final int indicateur_rouge=0x7f02000b;
+        public static final int indicateur_vert=0x7f02000c;
+        public static final int repas=0x7f02000d;
+        public static final int tasse=0x7f02000e;
+        public static final int utilisateur=0x7f02000f;
+        public static final int verrou=0x7f020010;
+        public static final int verrou_ferme=0x7f020011;
+        public static final int verrou_ouvert=0x7f020012;
     }
     public static final class id {
-        public static final int action_label=0x7f090027;
-        public static final int action_name=0x7f09002d;
-        public static final int action_settings=0x7f090037;
-        public static final int action_user_name=0x7f090038;
-        public static final int barometre_container=0x7f090021;
+        public static final int action_label=0x7f09002c;
+        public static final int action_name=0x7f090032;
+        public static final int action_settings=0x7f09003b;
+        public static final int action_user_name=0x7f09003c;
+        public static final int barometre_container=0x7f090025;
         public static final int declenchement_objet=0x7f090006;
         public static final int declenchement_utilisateur=0x7f090005;
-        public static final int download_button=0x7f090026;
+        public static final int download_button=0x7f09002b;
         public static final int edit_name=0x7f090014;
         public static final int edit_trigger=0x7f090017;
-        public static final int gridview_id=0x7f090033;
-        public static final int is_already_downloaded=0x7f090032;
-        public static final int item_detail_container=0x7f090024;
+        public static final int gridview_id=0x7f090037;
+        public static final int hydrometrie=0x7f090020;
+        public static final int is_already_downloaded=0x7f090036;
+        public static final int item_detail_container=0x7f090029;
+        public static final int layout_porte=0x7f090021;
         public static final int login_button=0x7f09000f;
         public static final int login_edit=0x7f09000d;
         public static final int myobject_detail_container=0x7f090012;
         public static final int myobject_list=0x7f090011;
-        public static final int name=0x7f090031;
-        public static final int object_name=0x7f09002e;
+        public static final int name=0x7f090035;
+        public static final int object_name=0x7f090033;
         public static final int pager=0x7f090010;
-        public static final int param_list=0x7f090028;
-        public static final int param_name=0x7f09002f;
+        public static final int param_list=0x7f09002d;
+        public static final int param_name=0x7f090034;
         public static final int password_edit=0x7f09000e;
-        public static final int porte_container=0x7f090022;
-        public static final int scenario_activite=0x7f090035;
+        public static final int peluche_container=0x7f090027;
+        public static final int porte_container=0x7f090026;
+        public static final int scenario_activite=0x7f090039;
         public static final int scenario_add_block_button=0x7f09001e;
         public static final int scenario_block_object_title=0x7f090018;
         public static final int scenario_block_param_title=0x7f09001b;
@@ -82,22 +89,23 @@ public final class R {
         public static final int scenario_edit_trigger_object_spinner=0x7f090007;
         public static final int scenario_edit_trigger_param_spinner=0x7f090009;
         public static final int scenario_edit_validation=0x7f090003;
-        public static final int scenario_icon=0x7f090034;
-        public static final int scenario_indicateur=0x7f090036;
-        public static final int scenario_list=0x7f090023;
-        public static final int scenario_name=0x7f090025;
-        public static final int scenario_obect_name=0x7f090029;
-        public static final int scenario_object_action=0x7f09002b;
-        public static final int scenario_object_icon=0x7f09002a;
-        public static final int scenario_object_param=0x7f09002c;
+        public static final int scenario_icon=0x7f090038;
+        public static final int scenario_indicateur=0x7f09003a;
+        public static final int scenario_list=0x7f090028;
+        public static final int scenario_name=0x7f09002a;
+        public static final int scenario_obect_name=0x7f09002e;
+        public static final int scenario_object_action=0x7f090030;
+        public static final int scenario_object_icon=0x7f09002f;
+        public static final int scenario_object_param=0x7f090031;
         public static final int scenario_title=0x7f090013;
         public static final int switch_activation=0x7f090016;
+        public static final int temperature=0x7f09001f;
+        public static final int toggle_porte=0x7f090022;
         public static final int trigger_object_icon=0x7f09001a;
         public static final int trigger_object_name=0x7f090019;
         public static final int trigger_param=0x7f09001c;
-        public static final int video_stream=0x7f09001f;
-        public static final int webcam_container=0x7f090020;
-        public static final int webcam_text=0x7f090030;
+        public static final int video_stream=0x7f090023;
+        public static final int webcam_container=0x7f090024;
     }
     public static final class layout {
         public static final int activity_edition_scenario_block=0x7f030000;
@@ -120,23 +128,24 @@ public final class R {
     http://developer.android.com/training/multiscreen/screensizes.html#TaskUseAliasFilters
     
          */
-        public static final int activity_myobject_list=0x7f030015;
+        public static final int activity_myobject_list=0x7f030016;
         public static final int activity_myobject_twopane=0x7f030005;
         public static final int activity_scenario_declencheur=0x7f030006;
         public static final int activity_scenario_details=0x7f030007;
-        public static final int fragment_ma_sphere_video=0x7f030008;
-        public static final int fragment_sphere_container=0x7f030009;
-        public static final int fragment_store_container=0x7f03000a;
-        public static final int fragment_store_detail=0x7f03000b;
-        public static final int list_mon_store_action=0x7f03000c;
-        public static final int list_scenario_blocks=0x7f03000d;
-        public static final int row_spinner_action=0x7f03000e;
-        public static final int row_spinner_object=0x7f03000f;
-        public static final int row_spinner_param=0x7f030010;
-        public static final int sphere_webcam_layout=0x7f030011;
-        public static final int store_list_item=0x7f030012;
-        public static final int studio_grid_layout=0x7f030013;
-        public static final int studio_gridrow_layout=0x7f030014;
+        public static final int fragment_ma_sphere_barometre=0x7f030008;
+        public static final int fragment_ma_sphere_porte=0x7f030009;
+        public static final int fragment_ma_sphere_video=0x7f03000a;
+        public static final int fragment_sphere_container=0x7f03000b;
+        public static final int fragment_store_container=0x7f03000c;
+        public static final int fragment_store_detail=0x7f03000d;
+        public static final int list_mon_store_action=0x7f03000e;
+        public static final int list_scenario_blocks=0x7f03000f;
+        public static final int row_spinner_action=0x7f030010;
+        public static final int row_spinner_object=0x7f030011;
+        public static final int row_spinner_param=0x7f030012;
+        public static final int store_list_item=0x7f030013;
+        public static final int studio_grid_layout=0x7f030014;
+        public static final int studio_gridrow_layout=0x7f030015;
     }
     public static final class menu {
         public static final int edition_scenario_declencheur=0x7f080000;
@@ -148,14 +157,17 @@ public final class R {
     public static final class string {
         public static final int action_settings=0x7f060001;
         public static final int app_name=0x7f060000;
+        public static final int barometre_title=0x7f060026;
         public static final int button_launch_scenario=0x7f060010;
         public static final int declenchement_objet=0x7f060022;
         public static final int declenchement_utilisateur=0x7f060021;
         public static final int download_scenario=0x7f060025;
+        public static final int etat_porte_title=0x7f060029;
         public static final int login_placeholder=0x7f060002;
         public static final int login_text_button=0x7f060004;
         public static final int menu_add_scenario=0x7f060011;
         public static final int password_placeholder=0x7f060003;
+        public static final int porte_title=0x7f060028;
         public static final int scenario_actions_titre=0x7f06000e;
         public static final int scenario_add_title=0x7f060012;
         public static final int scenario_declencheur_titre=0x7f06000b;
@@ -184,6 +196,7 @@ public final class R {
         public static final int trigger_object_title=0x7f06000c;
         public static final int trigger_param_title=0x7f06000d;
         public static final int user_name_action=0x7f060009;
+        public static final int webcam_title=0x7f060027;
     }
     public static final class style {
         /** 

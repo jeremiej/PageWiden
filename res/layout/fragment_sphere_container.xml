@@ -5,19 +5,15 @@
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
     android:baselineAligned="false"
-    android:divider="?android:attr/dividerHorizontal"
-    android:orientation="vertical"
-    android:showDividers="middle" >
+    android:orientation="vertical" >
     
 	<LinearLayout 
 	    android:layout_width="match_parent"
-	    android:layout_height="match_parent"
+	    android:layout_height="wrap_content"
 	    android:layout_marginLeft="16dp"
 	    android:layout_marginRight="16dp"
 	    android:baselineAligned="false"
-	    android:divider="?android:attr/dividerHorizontal"
-	    android:orientation="horizontal"
-	    android:showDividers="middle" >
+	    android:orientation="horizontal" >
 	    
 	    <FrameLayout
 	        android:id="@+id/webcam_container"
@@ -35,19 +31,23 @@
     
     <LinearLayout 
 	    android:layout_width="match_parent"
-	    android:layout_height="match_parent"
+	    android:layout_height="wrap_content"
 	    android:layout_marginLeft="16dp"
 	    android:layout_marginRight="16dp"
 	    android:baselineAligned="false"
-	    android:divider="?android:attr/dividerHorizontal"
-	    android:orientation="horizontal"
-	    android:showDividers="middle" >
+	    android:orientation="horizontal" >
 	    
     	    <FrameLayout
-	        android:id="@+id/porte_container"
-	        android:layout_width="0dp"
-	        android:layout_height="match_parent"
-	        android:layout_weight="1" />
+		        android:id="@+id/porte_container"
+		        android:layout_width="0dp"
+		        android:layout_height="match_parent"
+		        android:layout_weight="1" />
+    	    
+       	    <FrameLayout
+		        android:id="@+id/peluche_container"
+		        android:layout_width="0dp"
+		        android:layout_height="match_parent"
+		        android:layout_weight="1" />
     	    
 	</LinearLayout>
 

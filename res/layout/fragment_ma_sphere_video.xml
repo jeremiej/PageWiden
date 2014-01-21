@@ -1,12 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:layout_height="wrap_content"
+    android:orientation="vertical"  
+    android:layout_marginTop="15dp"
+    android:layout_marginRight="5dp"
+	android:background="#000000">
+    
+    <TextView 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#48bdec"
+        android:textSize="35sp"
+        android:background="#d2d2d2"
+        android:paddingLeft="10dp"
+        android:text="@string/webcam_title"/>
     
     <VideoView 
         android:id="@+id/video_stream"
         android:layout_width="500dp"
-        android:layout_height="375dp"/>
+        android:layout_height="375dp"
+        android:padding="10dp"
+        android:layout_gravity="center"/>
 
 </LinearLayout>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" 
+    android:layout_marginTop="15dp"
+    android:layout_marginLeft="5dp"
+	android:background="#dddddd">
+    
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#48bdec"
+        android:textSize="35sp"
+        android:background="#d2d2d2"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="@string/barometre_title"/>
+    
+    <LinearLayout 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="10dp"
+        android:layout_gravity="center">
+        
+        <ImageView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/chauffage"/>
+        
+        <TextView 
+	        android:id="@+id/temperature"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:paddingLeft="10dp"
+	        android:paddingTop="3dp"
+            android:textColor="#5f5f5f"
+            android:textSize="25sp"/>
+        
+    </LinearLayout>
+    
+    <LinearLayout 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="10dp"
+        android:layout_gravity="center">
+            
+       	<ImageView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/goutte"/>
+        
+       	<TextView 
+	        android:id="@+id/hydrometrie"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:paddingTop="3dp"
+	        android:paddingLeft="10dp"
+            android:textColor="#5f5f5f"
+            android:textSize="25sp"/>
+        
+    </LinearLayout>
+        
+</LinearLayout>
