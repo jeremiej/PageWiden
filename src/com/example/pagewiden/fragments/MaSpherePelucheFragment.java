@@ -22,8 +22,10 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -69,12 +71,21 @@ public class MaSpherePelucheFragment extends Fragment {
 				btAddScenario.setVisibility(8);
 				LinearLayout llPeluche = (LinearLayout) v.findViewById(R.id.layout_peluche);
 				llPeluche.setBackgroundColor(Color.parseColor("#000000"));
-				MediaController mc = new MediaController(getActivity());
-				vvVideoPeluche.setMediaController(mc);			    
+//				MediaController mc = new MediaController(getActivity());
+//				vvVideoPeluche.setMediaController(mc);		
+//				mc.setAnchorView(vvVideoPeluche);	    
 			    String uriPath = "android.resource://com.example.pagewiden/"+R.raw.k;
 		        Uri uri = Uri.parse(uriPath);
 		        vvVideoPeluche.setVideoURI(uri);
 		        vvVideoPeluche.start();
+//		        vvVideoPeluche.setOnTouchListener(new OnTouchListener() {
+//					
+//					@Override
+//					public boolean onTouch(View v, MotionEvent event) {
+//						if(vvVideoPeluche.isPlaying())
+//						return false;
+//					}
+//				});
 			}else{
 				vvVideoPeluche.setVisibility(8);
 				btAddScenario.setVisibility(8);
