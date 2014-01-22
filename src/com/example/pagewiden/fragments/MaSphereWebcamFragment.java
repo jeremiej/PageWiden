@@ -1,10 +1,13 @@
 package com.example.pagewiden.fragments;
 
+import java.net.InetAddress;
+
 import com.example.pagewiden.R;
 
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,11 +19,15 @@ public class MaSphereWebcamFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_ma_sphere_video, container, false);
 		
-		VideoView videoView = (VideoView)v.findViewById(R.id.video_stream);
-		videoView.setMediaController(null);
-		videoView.setVideoURI(Uri.parse("rtsp://192.168.70.177/img/media.sav"));
-		videoView.start();
-		
+		try {
+			VideoView videoView = (VideoView)v.findViewById(R.id.video_stream);
+			videoView.setMediaController(null);
+			videoView.setVideoURI(Uri.parse("rtsp://192.168.70.177/img/media.sav"));
+			videoView.start();	
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+				
 		return v;
 	}
 }

@@ -2,6 +2,7 @@ package com.example.pagewiden.fragments;
 
 import java.util.ArrayList;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -13,9 +14,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import com.example.pagewiden.R;
-import com.example.pagewiden.adapters.CustomGridViewAdapter;
 import com.example.pagewiden.adapters.CustomListViewMonStoreAdapter;
-import com.example.pagewiden.model.ScenarioList;
 import com.example.pagewiden.model.ScenarioListDownloadable;
 
 public class MonStoreFragmentContainer extends Fragment {
@@ -35,7 +34,7 @@ public class MonStoreFragmentContainer extends Fragment {
 		this.lv = (ListView) v.findViewById(R.id.scenario_list);
 		mScenarioDownloadableList = ScenarioListDownloadable.get(inflater.getContext());
 		mScenarioDownloadableArray = mScenarioDownloadableList.getScenarioArray();
-
+		
 		FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
     	Bundle arguments = new Bundle();
     	arguments.putInt("scenarioId", 0);

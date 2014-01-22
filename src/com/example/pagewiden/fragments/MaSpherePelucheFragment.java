@@ -1,16 +1,12 @@
 package com.example.pagewiden.fragments;
 
-import java.util.ArrayList;
-
 import com.example.pagewiden.MainActivity;
 import com.example.pagewiden.R;
 import com.example.pagewiden.model.MyObject;
 import com.example.pagewiden.model.MyObjectAction;
-import com.example.pagewiden.model.MyObjectList;
 import com.example.pagewiden.model.MyObjectParam;
 import com.example.pagewiden.model.Scenario;
 import com.example.pagewiden.model.ScenarioBlock;
-import com.example.pagewiden.model.ScenarioList;
 import com.example.pagewiden.model.ScenarioListDownloadable;
 
 import android.content.Intent;
@@ -20,7 +16,6 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -29,7 +24,6 @@ import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.VideoView;
 

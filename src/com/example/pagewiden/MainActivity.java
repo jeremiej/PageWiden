@@ -2,10 +2,12 @@ package com.example.pagewiden;
 
 import java.util.Locale;
 
-import com.example.pagewiden.fragments.MaSphereContainerFragment;
-import com.example.pagewiden.fragments.MonStoreFragmentContainer;
-import com.example.pagewiden.fragments.MonStudioFragmentContainer;
-import com.example.pagewiden.model.User;
+import org.qeo.EventReader;
+import org.qeo.EventReaderListener;
+import org.qeo.QeoFactory;
+import org.qeo.android.QeoAndroid;
+import org.qeo.android.QeoConnectionListener;
+import org.qeo.exception.QeoException;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
@@ -19,8 +21,22 @@ import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.accenture.cdi.widen.data.BookSensor;
+import com.accenture.cdi.widen.data.TeddySensor;
+import com.example.pagewiden.fragments.MaSphereContainerFragment;
+import com.example.pagewiden.fragments.MonStoreFragmentContainer;
+import com.example.pagewiden.fragments.MonStudioFragmentContainer;
+import com.example.pagewiden.model.User;
+
 public class MainActivity extends FragmentActivity implements
 		ActionBar.TabListener {
+
+    private QeoFactory qeo = null;
+    private WidenQeoConnectionListener wQCL = null;
+    private EventReader<TeddySensor> eventReaderTeddyHere = null;
+    private EventReader<BookSensor> eventReaderBookHere = null;
+
+	MaSphereContainerFragment maSphere;
 
 	/**
 	 * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -84,6 +100,10 @@ public class MainActivity extends FragmentActivity implements
 		
 		if(targetTab!=999)
 			actionBar.setSelectedNavigationItem(targetTab);
+
+		// init Qeo
+		initQeo();
+
 	}
 	
 	@Override
@@ -127,10 +147,6 @@ public class MainActivity extends FragmentActivity implements
 	 */
 	public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
-		MaSphereContainerFragment maSphere;
-		MonStudioFragmentContainer monStudio;
-		MonStoreFragmentContainer monStore;
-
 		public SectionsPagerAdapter(FragmentManager fm) {
 			super(fm);
 		}
@@ -139,7 +155,8 @@ public class MainActivity extends FragmentActivity implements
 		public Fragment getItem(int position) {
 	        switch (position) {
 		        case 0:
-		        	return Fragment.instantiate(getApplicationContext(), MaSphereContainerFragment.class.getName());
+		        	maSphere = (MaSphereContainerFragment) Fragment.instantiate(getApplicationContext(), MaSphereContainerFragment.class.getName());
+		        	return maSphere;
 		        case 1:
 		        	return Fragment.instantiate(getApplicationContext(), MonStudioFragmentContainer.class.getName());
 		        case 2:
@@ -168,4 +185,91 @@ public class MainActivity extends FragmentActivity implements
 			return null;
 		}
 	}
+
+	// Qeo methods
+	private void initQeo() {
+		this.wQCL = new WidenQeoConnectionListener();
+		QeoAndroid.initQeo(getApplicationContext(), this.wQCL);
+	}
+
+	public void onDestroy() {
+		super.onDestroy();
+		if (eventReaderTeddyHere != null) {
+			eventReaderTeddyHere.close();
+       	}
+       	if (eventReaderBookHere != null) {
+       		eventReaderBookHere.close();
+       	}
+        if (qeo != null) {
+            qeo.close();
+        }
+    }
+
+	private class WidenQeoConnectionListener extends QeoConnectionListener {
+
+	    @Override
+	    public void onQeoReady(QeoFactory curQeo)
+	    {
+	        // Will be called when the Android Qeo Service connection is established and is ready to be used.
+	        // This can take a while depending on the security initialization.
+	        qeo = curQeo;
+	        // This is a good place to create readers and writers
+	        try {
+				eventReaderTeddyHere = qeo.createEventReader(TeddySensor.class, new EventListenerTeddyHere());
+				eventReaderBookHere = qeo.createEventReader(BookSensor.class, new EventListenerBookHere());
+				
+			} catch (QeoException e) {
+				e.printStackTrace();
+			}
+	    }
+	
+	    @Override
+	    public void onQeoClosed(QeoFactory curQeo)
+	    {
+	    	// Will be called when the Android Qeo Service connection is lost
+        }
+	 
+        @Override
+        public void onQeoError(QeoException ex)
+        {
+            ex.printStackTrace();
+	    }
+
+	}
+
+	// State and Event listeners
+	public class EventListenerTeddyHere implements EventReaderListener<TeddySensor> {
+
+		@Override
+		public void onData(TeddySensor teddyHere) {
+			onTeddyHere();
+		}
+
+		@Override
+		public void onNoMoreData() {	
+		}
+
+	}
+
+	public class EventListenerBookHere implements EventReaderListener<BookSensor> {
+
+		@Override
+		public void onData(BookSensor bookHere) {
+			onBookHere();
+		}
+
+		@Override
+		public void onNoMoreData() {	
+		}
+
+	}
+
+	private void onTeddyHere() {
+		maSphere.onTeddyHere();
+	}
+
+	private void onBookHere() {
+		maSphere.onBookHere();
+	}
+
 }

@@ -137,8 +137,9 @@ public class EditionScenarioBlockActivity extends Activity {
 					
 					mNewScenario.destroy();
 					
-					Intent i = new Intent(getApplicationContext(), MainActivity.class);
-					startActivity(i);
+		        	Intent i = new Intent(getApplicationContext(), MainActivity.class);
+		        	i.putExtra("targetTab", 1);
+		        	startActivity(i);
 				}
 			}
 		});

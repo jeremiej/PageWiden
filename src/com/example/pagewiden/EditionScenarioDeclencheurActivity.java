@@ -76,32 +76,64 @@ public class EditionScenarioDeclencheurActivity extends Activity {
 				RadioButton declenchementUtilisateur = (RadioButton)findViewById(R.id.declenchement_utilisateur);
 				boolean isChecked = declenchementUtilisateur.isChecked();
 				
-				mNewScenario = NewScenario.get(getApplicationContext());
-				
-			    if(isChecked){
-			    	mNewScenario.setScenarioActivite("Désactivé");			    	
-			    	Bitmap indicateurGris = BitmapFactory.decodeResource(getResources(), R.drawable.indicateur_gris);
-			    	mNewScenario.setScenarioIndicateur(indicateurGris);
-			    	Bitmap declencheurUtilisateur = BitmapFactory.decodeResource(getResources(), R.drawable.utilisateur);
-			    	mNewScenario.setScenarioIcon(declencheurUtilisateur);
-			    }else{
-			    	mNewScenario.setScenarioActivite("Activé");
-			    	Bitmap indicateurBleu = BitmapFactory.decodeResource(getApplicationContext().getResources(), R.drawable.indicateur_bleu);
-			    	mNewScenario.setScenarioIndicateur(indicateurBleu);
-			    	
-					MyObject selectedObject = (MyObject)mSpinnerObject.getSelectedItem();
-					MyObjectAction selectedAction = (MyObjectAction)mSpinnerAction.getSelectedItem();
-					MyObjectParam selectedParam = (MyObjectParam)mSpinnerParam.getSelectedItem();
-
-					ScenarioBlock blockDeclencheur = new ScenarioBlock();
-					blockDeclencheur.setMyObject(selectedObject);
-					blockDeclencheur.setMyObjectAction(selectedAction);
-					blockDeclencheur.setMyObjectParam(selectedParam);	
-					mNewScenario.setDeclencheur(blockDeclencheur);		    	
-			    }
-											
-				Intent i = new Intent(getApplicationContext(), EditionScenarioBlockActivity.class);
-				startActivity(i);			
+				if(scenarioNb!=999){
+					ScenarioList mScenarioList = ScenarioList.get(getApplicationContext());
+					Scenario currentScenario = new Scenario();
+					ArrayList<Object> scenarioArray = mScenarioList.getScenarioArray();
+					currentScenario = (Scenario)scenarioArray.get(scenarioNb);
+					
+				    if(isChecked){
+				    	currentScenario.setScenarioActivite("Désactivé");			    	
+				    	Bitmap indicateurGris = BitmapFactory.decodeResource(getResources(), R.drawable.indicateur_gris);
+				    	currentScenario.setScenarioIndicateur(indicateurGris);
+				    	Bitmap declencheurUtilisateur = BitmapFactory.decodeResource(getResources(), R.drawable.utilisateur);
+				    	currentScenario.setScenarioIcon(declencheurUtilisateur);
+				    }else{
+				    	currentScenario.setScenarioActivite("Activé");
+				    	Bitmap indicateurBleu = BitmapFactory.decodeResource(getApplicationContext().getResources(), R.drawable.indicateur_bleu);
+				    	currentScenario.setScenarioIndicateur(indicateurBleu);
+				    	
+						MyObject selectedObject = (MyObject)mSpinnerObject.getSelectedItem();
+						MyObjectAction selectedAction = (MyObjectAction)mSpinnerAction.getSelectedItem();
+						MyObjectParam selectedParam = (MyObjectParam)mSpinnerParam.getSelectedItem();
+	
+						ScenarioBlock blockDeclencheur = new ScenarioBlock();
+						blockDeclencheur.setMyObject(selectedObject);
+						blockDeclencheur.setMyObjectAction(selectedAction);
+						blockDeclencheur.setMyObjectParam(selectedParam);	
+						currentScenario.setDeclencheur(blockDeclencheur);		    	
+				    }
+					Intent i = new Intent(getApplicationContext(), ScenarioDetailsActivity.class);
+					i.putExtra("id", scenarioNb);
+					startActivity(i);
+				}else{															
+					mNewScenario = NewScenario.get(getApplicationContext());
+					
+				    if(isChecked){
+				    	mNewScenario.setScenarioActivite("Désactivé");			    	
+				    	Bitmap indicateurGris = BitmapFactory.decodeResource(getResources(), R.drawable.indicateur_gris);
+				    	mNewScenario.setScenarioIndicateur(indicateurGris);
+				    	Bitmap declencheurUtilisateur = BitmapFactory.decodeResource(getResources(), R.drawable.utilisateur);
+				    	mNewScenario.setScenarioIcon(declencheurUtilisateur);
+				    }else{
+				    	mNewScenario.setScenarioActivite("Activé");
+				    	Bitmap indicateurBleu = BitmapFactory.decodeResource(getApplicationContext().getResources(), R.drawable.indicateur_bleu);
+				    	mNewScenario.setScenarioIndicateur(indicateurBleu);
+				    	
+						MyObject selectedObject = (MyObject)mSpinnerObject.getSelectedItem();
+						MyObjectAction selectedAction = (MyObjectAction)mSpinnerAction.getSelectedItem();
+						MyObjectParam selectedParam = (MyObjectParam)mSpinnerParam.getSelectedItem();
+	
+						ScenarioBlock blockDeclencheur = new ScenarioBlock();
+						blockDeclencheur.setMyObject(selectedObject);
+						blockDeclencheur.setMyObjectAction(selectedAction);
+						blockDeclencheur.setMyObjectParam(selectedParam);	
+						mNewScenario.setDeclencheur(blockDeclencheur);		    	
+				    }
+												
+					Intent i = new Intent(getApplicationContext(), EditionScenarioBlockActivity.class);
+					startActivity(i);	
+				}
 			}
 		});
 				
