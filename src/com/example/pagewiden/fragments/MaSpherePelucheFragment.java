@@ -46,7 +46,7 @@ public class MaSpherePelucheFragment extends Fragment {
 		
 		TextView tvLaunchVideo = (TextView)v.findViewById(R.id.peluche_launch_video);
 		Button btAddScenario = (Button)v.findViewById(R.id.peluche_add_scenario);
-		VideoView vvVideoPeluche = (VideoView) v.findViewById(R.id.peluche_video);
+		final VideoView vvVideoPeluche = (VideoView) v.findViewById(R.id.peluche_video);
 		
 		ScenarioListDownloadable scenarioListDownloadable = ScenarioListDownloadable.get(getActivity());
 		
@@ -70,22 +70,23 @@ public class MaSpherePelucheFragment extends Fragment {
 				tvLaunchVideo.setVisibility(8);
 				btAddScenario.setVisibility(8);
 				LinearLayout llPeluche = (LinearLayout) v.findViewById(R.id.layout_peluche);
-				llPeluche.setBackgroundColor(Color.parseColor("#000000"));
-//				MediaController mc = new MediaController(getActivity());
-//				vvVideoPeluche.setMediaController(mc);		
-//				mc.setAnchorView(vvVideoPeluche);	    
+				llPeluche.setBackgroundColor(Color.parseColor("#000000"));  
 			    String uriPath = "android.resource://com.example.pagewiden/"+R.raw.k;
 		        Uri uri = Uri.parse(uriPath);
 		        vvVideoPeluche.setVideoURI(uri);
 		        vvVideoPeluche.start();
-//		        vvVideoPeluche.setOnTouchListener(new OnTouchListener() {
-//					
-//					@Override
-//					public boolean onTouch(View v, MotionEvent event) {
-//						if(vvVideoPeluche.isPlaying())
-//						return false;
-//					}
-//				});
+		        vvVideoPeluche.setOnTouchListener(new OnTouchListener() {
+					
+					@Override
+					public boolean onTouch(View v, MotionEvent event) {
+						if(vvVideoPeluche.isPlaying()){
+							vvVideoPeluche.pause();
+						}else{
+							vvVideoPeluche.start();
+						}
+						return false;
+					}
+				});
 			}else{
 				vvVideoPeluche.setVisibility(8);
 				btAddScenario.setVisibility(8);

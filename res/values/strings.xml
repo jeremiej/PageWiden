@@ -3,8 +3,8 @@
 
     <string name="app_name">Page Widen</string>
     <string name="action_settings">Settings</string>
-    <string name="login_placeholder">Enter your login</string>
-    <string name="password_placeholder">Enter your password</string>
+    <string name="login_placeholder">Entrez votre login</string>
+    <string name="password_placeholder">Entrez votre mot de passe</string>
     <string name="login_text_button">Login</string>
     <string name="title_activity_main">Page Widen</string>
     <string name="title_section1">Ma sphère</string>
