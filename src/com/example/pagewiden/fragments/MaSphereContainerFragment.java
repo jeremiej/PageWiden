@@ -2,9 +2,12 @@ package com.example.pagewiden.fragments;
 
 import java.util.ArrayList;
 
-import com.example.pagewiden.R;
-import com.example.pagewiden.model.MyObject;
-import com.example.pagewiden.model.MyObjectList;
+import org.qeo.EventReader;
+import org.qeo.EventReaderListener;
+import org.qeo.QeoFactory;
+import org.qeo.android.QeoAndroid;
+import org.qeo.android.QeoConnectionListener;
+import org.qeo.exception.QeoException;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -12,11 +15,15 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
+import android.widget.Toast;
+
+import com.accenture.cdi.widen.data.BookSensor;
+import com.accenture.cdi.widen.data.TeddySensor;
+import com.example.pagewiden.R;
+import com.example.pagewiden.model.MyObject;
+import com.example.pagewiden.model.MyObjectList;
 
 public class MaSphereContainerFragment extends Fragment {
 	
@@ -25,7 +32,17 @@ public class MaSphereContainerFragment extends Fragment {
 	private MaSpherePorteFragment mPorteFragment = null;
 	private MaSpherePelucheFragment mPelucheFragment = null;
 	private MaSphereListScenarioFragment mListScenarioFragment = null;
-	
+
+	// Qeo attributes
+	public static final int TOAST_DURATION = Toast.LENGTH_SHORT;
+	public static final int TOAST_ID_TEDDY_HERE = 0;
+	public static final int TOAST_ID_BOOK_HERE = 1;
+
+    private QeoFactory qeo = null;
+    private WidenQeoConnectionListener wQCL = null;
+    private EventReader<TeddySensor> eventReaderTeddyHere = null;
+    private EventReader<BookSensor> eventReaderBookHere = null;
+
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_ma_sphere_container, container, false);
 		
@@ -50,44 +67,35 @@ public class MaSphereContainerFragment extends Fragment {
 	    	mPelucheFragment.setArguments(arguments);
 			transaction.add(R.id.peluche_container, this.mPelucheFragment);			
 		}
-		
 
-			FrameLayout flVideo = (FrameLayout)v.findViewById(R.id.webcam_container);
-			
-			flVideo.setOnTouchListener(new OnTouchListener() {
-				
-				@Override
-				public boolean onTouch(View v, MotionEvent event) {
-					MyObjectList myObjectList = MyObjectList.get(getActivity());
-					ArrayList<Object> objectArray = myObjectList.getMyObjectArray();
-					MyObject peluche = (MyObject) objectArray.get(3);
-					if(!peluche.isInRealm()){
-						displayDialog();
-					}
-					return false;
-				}
-			});
+//			FrameLayout flVideo = (FrameLayout)v.findViewById(R.id.webcam_container);
+//
+//			
+//			flVideo.setOnTouchListener(new OnTouchListener() {
+//				
+//				@Override
+//				public boolean onTouch(View v, MotionEvent event) {
+//					onTeddyDetected();
+//					return false;
+//				}
+//			});
 		
-		if(mPelucheFragment!=null){
-			FrameLayout flBarometre = (FrameLayout) v.findViewById(R.id.barometre_container);		
-			flBarometre.setOnTouchListener(new OnTouchListener() {
-				
-				@Override
-				public boolean onTouch(View v, MotionEvent event) {
-			    	Bundle arguments = new Bundle();
-			    	arguments.putInt("launchVideo", 1);
-			    	mPelucheFragment = new MaSpherePelucheFragment();
-			    	mPelucheFragment.setArguments(arguments);
-					FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
-					transaction.replace(R.id.peluche_container, mPelucheFragment);
-					transaction.commit();
-					return false;
-				}
-			});
-		}
-		
+//		if(mPelucheFragment!=null){
+//			FrameLayout flBarometre = (FrameLayout) v.findViewById(R.id.barometre_container);		
+//			flBarometre.setOnTouchListener(new OnTouchListener() {
+//				
+//				@Override
+//				public boolean onTouch(View v, MotionEvent event) {
+//					onBookDetected();
+//					return false;
+//				}
+//			});
+//		}
+//		
 		transaction.commit();
-	    
+
+		// init Qeo
+		initQeo();
 		return v;
 	}
 	
@@ -126,5 +134,102 @@ public class MaSphereContainerFragment extends Fragment {
 
 		AlertDialog alertDialog = alertDialogBuilder.create();
 		alertDialog.show();
+	}
+
+	// Qeo methods
+	private void initQeo() {
+		this.wQCL = new WidenQeoConnectionListener();
+		QeoAndroid.initQeo(this.getActivity().getApplicationContext(), this.wQCL);
+	}
+
+	public void onDestroy() {
+		super.onDestroy();
+		if (eventReaderTeddyHere != null) {
+			eventReaderTeddyHere.close();
+       	}
+       	if (eventReaderBookHere != null) {
+       		eventReaderBookHere.close();
+       	}
+        if (qeo != null) {
+            qeo.close();
+        }
+    }
+
+	private class WidenQeoConnectionListener extends QeoConnectionListener {
+
+	    @Override
+	    public void onQeoReady(QeoFactory curQeo)
+	    {
+	        // Will be called when the Android Qeo Service connection is established and is ready to be used.
+	        // This can take a while depending on the security initialization.
+	        qeo = curQeo;
+	        // This is a good place to create readers and writers
+	        try {
+				eventReaderTeddyHere = qeo.createEventReader(TeddySensor.class, new EventListenerTeddyHere());
+				eventReaderBookHere = qeo.createEventReader(BookSensor.class, new EventListenerBookHere());
+				
+			} catch (QeoException e) {
+				e.printStackTrace();
+			}
+	    }
+	
+	    @Override
+	    public void onQeoClosed(QeoFactory curQeo)
+	    {
+	    	// Will be called when the Android Qeo Service connection is lost
+        }
+	 
+        @Override
+        public void onQeoError(QeoException ex)
+        {
+            ex.printStackTrace();
+	    }
+
+	}
+
+	// State and Event listeners
+	public class EventListenerTeddyHere implements EventReaderListener<TeddySensor> {
+
+		@Override
+		public void onData(TeddySensor teddyHere) {
+			onTeddyHere();
+		}
+
+		@Override
+		public void onNoMoreData() {	
+		}
+
+	}
+
+	public class EventListenerBookHere implements EventReaderListener<BookSensor> {
+
+		@Override
+		public void onData(BookSensor bookHere) {
+			onBookHere();
+		}
+
+		@Override
+		public void onNoMoreData() {	
+		}
+
+	}
+
+	private void onTeddyHere() {
+		MyObjectList myObjectList = MyObjectList.get(getActivity());
+		ArrayList<Object> objectArray = myObjectList.getMyObjectArray();
+		MyObject peluche = (MyObject) objectArray.get(3);
+		if(!peluche.isInRealm()){
+			displayDialog();
+		}
+	}
+
+	private void onBookHere() {
+    	Bundle arguments = new Bundle();
+    	arguments.putInt("launchVideo", 1);
+    	mPelucheFragment = new MaSpherePelucheFragment();
+    	mPelucheFragment.setArguments(arguments);
+		FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+		transaction.replace(R.id.peluche_container, mPelucheFragment);
+		transaction.commit();
 	}
 }
