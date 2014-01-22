@@ -13,7 +13,9 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import com.example.pagewiden.R;
+import com.example.pagewiden.adapters.CustomGridViewAdapter;
 import com.example.pagewiden.adapters.CustomListViewMonStoreAdapter;
+import com.example.pagewiden.model.ScenarioList;
 import com.example.pagewiden.model.ScenarioListDownloadable;
 
 public class MonStoreFragmentContainer extends Fragment {
@@ -24,6 +26,8 @@ public class MonStoreFragmentContainer extends Fragment {
 	private ArrayList<Object> mScenarioDownloadableArray;
 
 	private ListView lv = null;
+	
+	private CustomListViewMonStoreAdapter customListViewMonStoreAdapter;
 
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -59,7 +63,7 @@ public class MonStoreFragmentContainer extends Fragment {
 	
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		CustomListViewMonStoreAdapter customListViewMonStoreAdapter = new CustomListViewMonStoreAdapter(this.lv.getContext(), R.layout.store_list_item, mScenarioDownloadableArray);
+		customListViewMonStoreAdapter = new CustomListViewMonStoreAdapter(this.lv.getContext(), R.layout.store_list_item, mScenarioDownloadableArray);
 		lv.setAdapter(customListViewMonStoreAdapter);
     }
 
@@ -71,5 +75,11 @@ public class MonStoreFragmentContainer extends Fragment {
 			transaction.remove(this.nestedFragment);
 			transaction.commit();
 		}
+	}
+	
+	@Override
+	public void onResume() {		
+		customListViewMonStoreAdapter.notifyDataSetChanged();
+		super.onResume();
 	}
 }

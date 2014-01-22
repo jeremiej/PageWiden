@@ -24,19 +24,20 @@ public class MaSpherePorteFragment extends Fragment {
 		tbPorte.setChecked(true);
 
 		final LinearLayout llPorte = (LinearLayout)v.findViewById(R.id.layout_porte);
-		llPorte.setBackgroundColor(Color.parseColor("#a3e78b"));
+		llPorte.setBackgroundColor(Color.parseColor("#d85142"));
 		
 		tbPorte.setOnCheckedChangeListener(new OnCheckedChangeListener() {			
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 		        if (isChecked) {
-		        	llPorte.setBackgroundColor(Color.parseColor("#a3e78b"));
+		        	llPorte.setBackgroundColor(Color.parseColor("#d85142"));		        	
 		        } else {
-		        	llPorte.setBackgroundColor(Color.parseColor("#d85142"));
+		        	llPorte.setBackgroundColor(Color.parseColor("#a3e78b"));
 		        }
 			}
 		});
 		
 		return v;
 	}
+	
 }

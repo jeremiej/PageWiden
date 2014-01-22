@@ -131,7 +131,7 @@ public class EditionScenarioDeclencheurActivity extends Activity {
 	public void addItemsObjectSpinner(){
 		mSpinnerObject = (Spinner)findViewById(R.id.scenario_edit_trigger_object_spinner);
 		MyObjectList sMyObjectList = new MyObjectList(getApplicationContext());
-		objectList = (ArrayList<Object>) sMyObjectList.getMyObjectArray();
+		objectList = (ArrayList<Object>) sMyObjectList.getInRealmMyObjectArray();
 		customObjectSpinnerAdapter = new CustomObjectSpinnerAdapter(getApplicationContext(), R.layout.row_spinner_object, objectList);
 		customObjectSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		mSpinnerObject.setAdapter(customObjectSpinnerAdapter);

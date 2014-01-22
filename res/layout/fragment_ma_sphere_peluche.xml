@@ -16,6 +16,7 @@
         android:text="@string/peluche_title"/>
     
     <TextView 
+        android:id="@+id/peluche_launch_video"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
@@ -23,5 +24,20 @@
         android:textColor="#7d8083"
         android:paddingBottom="30dp"
         android:text="@string/peluche_launch_video"/>
+    
+    <Button 
+        android:id="@+id/peluche_add_scenario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="25sp"
+        android:textColor="#7d8083"
+        android:paddingBottom="30dp"
+        android:text="@string/peluche_add_scenario"/>
+    
+    <VideoView 
+        android:id="@+id/peluche_video"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </LinearLayout>

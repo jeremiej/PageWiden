@@ -24,6 +24,7 @@ public class MyObjectList {
 		MyObject oAmpoule = new MyObject();
 		oAmpoule.setId(1);
 		oAmpoule.setName("Ampoule");
+		oAmpoule.setInRealm(true);
 		Bitmap ampouleIcon = BitmapFactory.decodeResource(res, R.drawable.ampoule);
 		oAmpoule.setIcon(ampouleIcon);
 		
@@ -74,6 +75,7 @@ public class MyObjectList {
 		MyObject oCafetiere = new MyObject();
 		oCafetiere.setId(2);
 		oCafetiere.setName("Cafetière");
+		oCafetiere.setInRealm(true);
 		Bitmap tasseIcon = BitmapFactory.decodeResource(res, R.drawable.tasse);
 		oCafetiere.setIcon(tasseIcon);
 		
@@ -104,6 +106,7 @@ public class MyObjectList {
 		MyObject oHorloge = new MyObject();
 		oHorloge.setId(3);
 		oHorloge.setName("Horloge");
+		oHorloge.setInRealm(true);
 		Bitmap horlogeIcon = BitmapFactory.decodeResource(res, R.drawable.horloge);
 		oHorloge.setIcon(horlogeIcon);
 		
@@ -234,6 +237,37 @@ public class MyObjectList {
 		oHorloge.addAction(aHorloge);
 
 		mMyObjectArray.add(oHorloge);
+		
+		// Création de l'objet Peluche, ses actions et leurs paramètres 
+		MyObject oPeluche = new MyObject();
+		oPeluche.setId(4);
+		oPeluche.setName("Peluche");
+		oPeluche.setInRealm(false);
+		Bitmap pelucheIcon = BitmapFactory.decodeResource(res, R.drawable.peluche);
+		oPeluche.setIcon(pelucheIcon);
+		
+		MyObjectAction aPeluche = new MyObjectAction();
+		aPeluche.setId(1);
+		aPeluche.setLabel("Détecter");
+		
+		MyObjectParam pPeluche = new MyObjectParam();
+		pPeluche.setId(1);
+		pPeluche.setLabel("Livre connecté");
+		aPeluche.addParam(pPeluche);
+		
+		oPeluche.addAction(aPeluche);
+		
+		MyObjectAction aPeluche2 = new MyObjectAction();
+		aPeluche2.setId(2);
+		aPeluche2.setLabel("Envoyer");
+		
+		MyObjectParam pPeluche2 = new MyObjectParam();
+		pPeluche2.setId(1);
+		pPeluche2.setLabel("Vidéo à tablette");
+		aPeluche2.addParam(pPeluche2);		
+		
+		oPeluche.addAction(aPeluche2);
+		mMyObjectArray.add(oPeluche);
 	}
 	
 	public static MyObjectList get(Context c){
@@ -245,6 +279,20 @@ public class MyObjectList {
 
 	public ArrayList<Object> getMyObjectArray() {
 		return mMyObjectArray;
+	}
+	
+	public void setMyObjectArray(ArrayList<Object> myObjectArray) {
+		mMyObjectArray = myObjectArray;
+	}
+
+	public ArrayList<Object> getInRealmMyObjectArray(){
+		ArrayList<Object> inRealm = new ArrayList<Object>();
+		for (int i = 0; i < this.mMyObjectArray.size(); i++) {
+			MyObject currentObject = (MyObject)this.mMyObjectArray.get(i);
+			if(currentObject.isInRealm())
+				inRealm.add(currentObject);
+		}
+		return inRealm;
 	}
 		
 }

@@ -9,6 +9,7 @@ public class MyObject {
 	private String mName;
 	private Bitmap mIcon;
 	private ArrayList<Object> mActionList;
+	private boolean isInRealm;
 	
 	public MyObject(){
 		super();
@@ -45,5 +46,13 @@ public class MyObject {
 	
 	public void addAction(MyObjectAction a){
 		mActionList.add(a);
+	}
+
+	public boolean isInRealm() {
+		return isInRealm;
+	}
+
+	public void setInRealm(boolean isInRealm) {
+		this.isInRealm = isInRealm;
 	}
 }

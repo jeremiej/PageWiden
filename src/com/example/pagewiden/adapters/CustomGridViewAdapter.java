@@ -54,7 +54,8 @@ public class CustomGridViewAdapter extends ArrayAdapter<Object> {
 			row = inflater.inflate(layoutResourceId, parent, false);
 			
 			holder = new RecordHolder();
-			if(scenario.getScenarioTitle() == null){
+			ScenarioList scenarioList = ScenarioList.get(context);
+			if(scenarioList.getSize()-1==position){
 				holder.scenarioTitle = (TextView) row.findViewById(R.id.scenario_title);
 				holder.scenarioIcon = (ImageView) row.findViewById(R.id.scenario_icon);
 				holder.scenarioIcon.setAlpha(0.45f);

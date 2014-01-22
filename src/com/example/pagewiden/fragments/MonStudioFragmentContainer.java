@@ -60,10 +60,10 @@ public class MonStudioFragmentContainer extends Fragment {
 	
 	@Override
 	public void onResume() {
-		final Context context = this.getActivity().getApplicationContext();
-		ScenarioList scenarioList = ScenarioList.get(getActivity().getApplicationContext());
+		ScenarioList scenarioList = ScenarioList.get(getActivity());
 		gridArray = scenarioList.getScenarioArray();
-		customGridAdapter.notifyDataSetChanged();
+		customGridAdapter = new CustomGridViewAdapter(getActivity(), R.layout.studio_gridrow_layout, gridArray);
+		gridView.setAdapter(customGridAdapter);
 		super.onResume();
 	}
 

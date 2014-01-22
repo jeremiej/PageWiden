@@ -46,6 +46,7 @@
 	<string name="peluche_title">Peluche</string>
 	<string name="list_scenario_title">Scénarios actifs</string>
 	<string name="peluche_launch_video">Passez un livre à proximité de la \npeluche pour lancer la vidéo</string>
+	<string name="peluche_add_scenario">Télécharger un nouveau \nscénario pour cet objet</string>
 	<string name="no_activ_scenario">Aucun scénario actif</string>
 	
 </resources>

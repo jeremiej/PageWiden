@@ -2,8 +2,8 @@ package com.example.pagewiden.fragments;
 
 import java.util.ArrayList;
 
-import com.example.pagewiden.MainActivity;
 import com.example.pagewiden.R;
+import com.example.pagewiden.ScenarioDetailsActivity;
 import com.example.pagewiden.adapters.CustomListViewScenarioBlockAdapter;
 import com.example.pagewiden.model.MyObject;
 import com.example.pagewiden.model.MyObjectParam;
@@ -15,6 +15,7 @@ import com.example.pagewiden.model.ScenarioListDownloadable;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -81,8 +82,8 @@ public class MonStoreDetailsFragment extends Fragment {
 					buttonDownload.setEnabled(false);
 		        	buttonDownload.setClickable(false);
 		        	
-		        	Intent i = new Intent(getActivity().getApplicationContext(), MainActivity.class);
-		        	i.putExtra("targetTab", 1);
+		        	Intent i = new Intent(getActivity().getApplicationContext(), ScenarioDetailsActivity.class);
+		        	i.putExtra("id", scenarioList.getSize()-2);
 		        	startActivity(i);
 				}
 			});

@@ -259,4 +259,15 @@ public class ScenarioListDownloadable {
 	public int getSize(){
 		return this.mScenarioArray.size();
 	}
+	
+	public boolean isScenarioInList(String scenarioTitle){
+		ArrayList<Object> scenarioArray = this.getScenarioArray();
+		for (int i = 0; i < scenarioArray.size(); i++) {
+			Scenario scenario = (Scenario) scenarioArray.get(i);
+			if(scenario.getScenarioTitle().equals(scenarioTitle)){
+				return true;
+			}
+		}
+		return false;
+	}
 }
