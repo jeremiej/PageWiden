@@ -44,32 +44,47 @@ public class MaSphereContainerFragment extends Fragment {
 		ArrayList<Object> objectArray = myObjectList.getMyObjectArray();
 		MyObject peluche = (MyObject) objectArray.get(3);
 		if(peluche.isInRealm()){
+	    	Bundle arguments = new Bundle();
+	    	arguments.putInt("launchVideo", 0);
 			this.mPelucheFragment = new MaSpherePelucheFragment();
+	    	mPelucheFragment.setArguments(arguments);
 			transaction.add(R.id.peluche_container, this.mPelucheFragment);			
 		}
 		
-		FrameLayout flVideo = (FrameLayout)v.findViewById(R.id.webcam_container);
-		
-		flVideo.setOnTouchListener(new OnTouchListener() {
+
+			FrameLayout flVideo = (FrameLayout)v.findViewById(R.id.webcam_container);
 			
-			@Override
-			public boolean onTouch(View v, MotionEvent event) {
-				displayDialog();
-				return false;
-			}
-		});
+			flVideo.setOnTouchListener(new OnTouchListener() {
+				
+				@Override
+				public boolean onTouch(View v, MotionEvent event) {
+					MyObjectList myObjectList = MyObjectList.get(getActivity());
+					ArrayList<Object> objectArray = myObjectList.getMyObjectArray();
+					MyObject peluche = (MyObject) objectArray.get(3);
+					if(!peluche.isInRealm()){
+						displayDialog();
+					}
+					return false;
+				}
+			});
 		
-		FrameLayout flBarometre = (FrameLayout) v.findViewById(R.id.barometre_container);
-		
-		flBarometre.setOnTouchListener(new OnTouchListener() {
-			
-			@Override
-			public boolean onTouch(View v, MotionEvent event) {
-//		    	Bundle arguments = new Bundle();
-//		    	arguments.putInt("launchVideo", 1);
-				return false;
-			}
-		});
+		if(mPelucheFragment!=null){
+			FrameLayout flBarometre = (FrameLayout) v.findViewById(R.id.barometre_container);		
+			flBarometre.setOnTouchListener(new OnTouchListener() {
+				
+				@Override
+				public boolean onTouch(View v, MotionEvent event) {
+			    	Bundle arguments = new Bundle();
+			    	arguments.putInt("launchVideo", 1);
+			    	mPelucheFragment = new MaSpherePelucheFragment();
+			    	mPelucheFragment.setArguments(arguments);
+					FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+					transaction.replace(R.id.peluche_container, mPelucheFragment);
+					transaction.commit();
+					return false;
+				}
+			});
+		}
 		
 		transaction.commit();
 	    
@@ -95,7 +110,10 @@ public class MaSphereContainerFragment extends Fragment {
 								myObjectList.setMyObjectArray(objectArray);
 								
 								FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+						    	Bundle arguments = new Bundle();
+						    	arguments.putInt("launchVideo", 0);
 								mPelucheFragment = new MaSpherePelucheFragment();
+						    	mPelucheFragment.setArguments(arguments);								
 								transaction.add(R.id.peluche_container, mPelucheFragment);	
 								transaction.commit();																
 							}

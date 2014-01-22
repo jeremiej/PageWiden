@@ -16,40 +16,47 @@ import com.example.pagewiden.model.ScenarioListDownloadable;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.MediaController;
 import android.widget.TextView;
+import android.widget.VideoView;
 
 public class MaSpherePelucheFragment extends Fragment {
 	View v;
+	
+	public int getVideoMode() {
+		return getArguments().getInt("launchVideo", 0);
+	}
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {		
 		v = inflater.inflate(R.layout.fragment_ma_sphere_peluche, container, false);	
 		
-		MyObjectList objectList = MyObjectList.get(getActivity());
-		ArrayList<Object> objectArray = objectList.getMyObjectArray();
-		
-		MyObject peluche = (MyObject) objectArray.get(3);
-		
 		TextView tvLaunchVideo = (TextView)v.findViewById(R.id.peluche_launch_video);
 		Button btAddScenario = (Button)v.findViewById(R.id.peluche_add_scenario);
+		VideoView vvVideoPeluche = (VideoView) v.findViewById(R.id.peluche_video);
 		
 		ScenarioListDownloadable scenarioListDownloadable = ScenarioListDownloadable.get(getActivity());
 		
-		if(!scenarioListDownloadable.isScenarioInList("Racontes moi une histoire")){
+		if(!scenarioListDownloadable.isScenarioInList("Racontes moi ...")){
 			tvLaunchVideo.setVisibility(8);
+			vvVideoPeluche.setVisibility(8);
 			btAddScenario.setOnClickListener(new OnClickListener() {
 				
 				@Override
 				public void onClick(View v) {
 					ScenarioListDownloadable scenarioList = ScenarioListDownloadable.get(getActivity());
-					if(!scenarioList.isScenarioInList("Racontes moi une histoire"))
+					if(!scenarioList.isScenarioInList("Racontes moi ..."))
 						addScenarioPeluche();
 					Intent i = new Intent(getActivity(), MainActivity.class);
 					i.putExtra("targetTab", 2);
@@ -57,7 +64,21 @@ public class MaSpherePelucheFragment extends Fragment {
 				}
 			});
 		}else{
-			btAddScenario.setVisibility(8);
+			if(getVideoMode()==1){		
+				tvLaunchVideo.setVisibility(8);
+				btAddScenario.setVisibility(8);
+				LinearLayout llPeluche = (LinearLayout) v.findViewById(R.id.layout_peluche);
+				llPeluche.setBackgroundColor(Color.parseColor("#000000"));
+				MediaController mc = new MediaController(getActivity());
+				vvVideoPeluche.setMediaController(mc);			    
+			    String uriPath = "android.resource://com.example.pagewiden/"+R.raw.k;
+		        Uri uri = Uri.parse(uriPath);
+		        vvVideoPeluche.setVideoURI(uri);
+		        vvVideoPeluche.start();
+			}else{
+				vvVideoPeluche.setVisibility(8);
+				btAddScenario.setVisibility(8);
+			}			
 		}
 		
 		return v;
