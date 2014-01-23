@@ -19,8 +19,8 @@
 	    android:id="@+id/toggle_porte"
 	    android:layout_width="150dp"
 	    android:layout_height="match_parent"
-       	android:textOn="Dévérouiller"
-    	android:textOff="Vérouiller"
+       	android:textOn="Déverrouiller"
+    	android:textOff="Verrouiller"
     	android:textSize="20sp"
     	android:layout_margin="10dp"
     	android:layout_gravity="center"/>

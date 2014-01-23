@@ -103,12 +103,12 @@ public final class R {
         public static final int scenario_indicateur=0x7f0a0046;
         public static final int scenario_list=0x7f0a0035;
         public static final int scenario_list_container=0x7f0a0028;
-        public static final int scenario_listview=0x7f0a002c;
         public static final int scenario_name=0x7f0a0000;
         public static final int scenario_obect_name=0x7f0a003a;
         public static final int scenario_object_action=0x7f0a003c;
         public static final int scenario_object_icon=0x7f0a003b;
         public static final int scenario_object_param=0x7f0a003d;
+        public static final int scenario_table=0x7f0a002c;
         public static final int scenario_title=0x7f0a0017;
         public static final int scroll=0x7f0a0026;
         public static final int switch_activation=0x7f0a001a;

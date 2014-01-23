@@ -7,7 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.pagewiden.R;
@@ -20,6 +20,8 @@ public class MaSphereListScenarioFragment extends Fragment {
 	CustomListViewActivScenarioAdapter activScenarioAdapter;
 	private ArrayList<Object> activScenarioArray;
 	private ArrayList<Object> scenarioArray;
+	private LinearLayout activeScenarioTable;
+	private TextView noActivScenario;
 	
 	
 	@Override
@@ -29,14 +31,13 @@ public class MaSphereListScenarioFragment extends Fragment {
 		ScenarioList scenarioList = ScenarioList.get(getActivity());
 		scenarioArray = scenarioList.getScenarioArray();
 		activScenarioArray = new ArrayList<Object>();
-		ListView scenarioListView = (ListView)v.findViewById(R.id.scenario_listview);
-		TextView noActivScenario = (TextView)v.findViewById(R.id.no_activ_scenario);
-		scenarioListView.setEmptyView(noActivScenario);
+		noActivScenario = (TextView)v.findViewById(R.id.no_activ_scenario);
+		activeScenarioTable = (LinearLayout) v.findViewById(R.id.scenario_table);
 
 		fillActiveScenarioList();
 		
 		this.activScenarioAdapter = new CustomListViewActivScenarioAdapter(getActivity(), R.layout.activ_scenario_list_item, activScenarioArray);
-		scenarioListView.setAdapter(this.activScenarioAdapter);
+		generateScenarioItemViews();
 
 		return v;
 	}
@@ -51,14 +52,25 @@ public class MaSphereListScenarioFragment extends Fragment {
 		}
 	}
 
+	private void generateScenarioItemViews() {
+		activeScenarioTable.removeAllViews();
+		View myView = null;
+		if (this.activScenarioAdapter.getCount() == 0) {
+			noActivScenario.setVisibility(View.VISIBLE);
+		} else {
+			for (int i = 0; i < this.activScenarioAdapter.getCount(); i++) {
+				myView = this.activScenarioAdapter.getView(i, null, activeScenarioTable);
+				activeScenarioTable.addView(myView);
+			}
+			noActivScenario.setVisibility(View.GONE);
+		}
+	}
+
 	@Override
 	public void onResume() {
 		fillActiveScenarioList();
 		this.activScenarioAdapter.setData(activScenarioArray);
-		this.activScenarioAdapter.notifyDataSetChanged();
+		generateScenarioItemViews();
 		super.onResume();
-		// TST
-		System.out.println("++++++++++++ Nb de scénarios actifs : " + this.activScenarioAdapter.getCount());
-		///TST
 	}
 }
