@@ -63,11 +63,11 @@ public class MaSphereBarometreFragment extends Fragment {
                 }
             } else {
                 Log.e("ServiceHandler", "Couldn't get any data from the url");
-            }  
-            
+            } 
+
             return null;
         }
-        
+
         @Override
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);

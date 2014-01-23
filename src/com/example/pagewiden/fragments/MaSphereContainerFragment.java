@@ -44,38 +44,14 @@ public class MaSphereContainerFragment extends Fragment {
 		MyObjectList myObjectList = MyObjectList.get(getActivity());
 		ArrayList<Object> objectArray = myObjectList.getMyObjectArray();
 		MyObject peluche = (MyObject) objectArray.get(3);
-		if(peluche.isInRealm()){
+		if (peluche.isInRealm()){
 	    	Bundle arguments = new Bundle();
 	    	arguments.putInt("launchVideo", 0);
 			this.mPelucheFragment = new MaSpherePelucheFragment();
 	    	mPelucheFragment.setArguments(arguments);
 			transaction.add(R.id.peluche_container, this.mPelucheFragment);			
 		}
-
-//			FrameLayout flVideo = (FrameLayout)v.findViewById(R.id.webcam_container);
-//
-//			
-//			flVideo.setOnTouchListener(new OnTouchListener() {
-//				
-//				@Override
-//				public boolean onTouch(View v, MotionEvent event) {
-//					onTeddyDetected();
-//					return false;
-//				}
-//			});
-		
-//		if(mPelucheFragment!=null){
-//			FrameLayout flBarometre = (FrameLayout) v.findViewById(R.id.barometre_container);		
-//			flBarometre.setOnTouchListener(new OnTouchListener() {
-//				
-//				@Override
-//				public boolean onTouch(View v, MotionEvent event) {
-//					onBookDetected();
-//					return false;
-//				}
-//			});
-//		}
-//		
+	
 		transaction.commit();
 
 
@@ -88,7 +64,7 @@ public class MaSphereContainerFragment extends Fragment {
 		alertDialogBuilder.setTitle("Nouvel objet détecté!");
 
 		alertDialogBuilder
-				.setMessage("L'objet peluche souhaite rejoindre votre royaume, voullez vous l'ajouter?")
+				.setMessage(R.string.teddy_accept_deny)
 				.setCancelable(false)
 				.setPositiveButton("Oui",
 						new DialogInterface.OnClickListener() {

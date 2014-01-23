@@ -41,12 +41,12 @@ public class MaSpherePelucheFragment extends Fragment {
 		
 		TextView tvLaunchVideo = (TextView)v.findViewById(R.id.peluche_launch_video);
 		Button btAddScenario = (Button)v.findViewById(R.id.peluche_add_scenario);
-		final VideoView vvVideoPeluche = (VideoView) v.findViewById(R.id.peluche_video);
+//		final VideoView vvVideoPeluche = (VideoView) v.findViewById(R.id.peluche_video);
 
 		ScenarioList scenarioList = ScenarioList.get(getActivity());
 		if(!scenarioList.isDownloaded("Racontes moi ...")){
 			tvLaunchVideo.setVisibility(8);
-			vvVideoPeluche.setVisibility(8);
+//			vvVideoPeluche.setVisibility(8);
 			btAddScenario.setOnClickListener(new OnClickListener() {
 				
 				@Override
@@ -59,34 +59,35 @@ public class MaSpherePelucheFragment extends Fragment {
 					startActivity(i);
 				}
 			});
+
 		}else{
 			if(getVideoMode()==1){		
-				tvLaunchVideo.setVisibility(8);
+//				tvLaunchVideo.setVisibility(8);
 				btAddScenario.setVisibility(8);
-				LinearLayout llPeluche = (LinearLayout) v.findViewById(R.id.layout_peluche);
-				llPeluche.setBackgroundColor(Color.parseColor("#000000"));  
-			    String uriPath = "android.resource://com.example.pagewiden/"+R.raw.k;
-		        Uri uri = Uri.parse(uriPath);
-		        vvVideoPeluche.setVideoURI(uri);
-		        vvVideoPeluche.start();
-		        vvVideoPeluche.setOnTouchListener(new OnTouchListener() {
-					
-					@Override
-					public boolean onTouch(View v, MotionEvent event) {
-						if(vvVideoPeluche.isPlaying()){
-							vvVideoPeluche.pause();
-						}else{
-							vvVideoPeluche.start();
-						}
-						return false;
-					}
-				});
+//				LinearLayout llPeluche = (LinearLayout) v.findViewById(R.id.layout_peluche);
+//				llPeluche.setBackgroundColor(Color.parseColor("#000000"));  
+//			    String uriPath = "android.resource://com.example.pagewiden/"+R.raw.k;
+//		        Uri uri = Uri.parse(uriPath);
+//		        vvVideoPeluche.setVideoURI(uri);
+//		        vvVideoPeluche.start();
+//		        vvVideoPeluche.setOnTouchListener(new OnTouchListener() {
+//					
+//					@Override
+//					public boolean onTouch(View v, MotionEvent event) {
+//						if(vvVideoPeluche.isPlaying()){
+//							vvVideoPeluche.pause();
+//						}else{
+//							vvVideoPeluche.start();
+//						}
+//						return false;
+//					}
+//				});
 			}else{
-				vvVideoPeluche.setVisibility(8);
+//				vvVideoPeluche.setVisibility(8);
 				btAddScenario.setVisibility(8);
 			}			
 		}
-		
+//		
 		return v;
 	}
 	

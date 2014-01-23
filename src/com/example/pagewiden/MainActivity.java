@@ -21,7 +21,6 @@ import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.accenture.cdi.widen.data.BookSensor;
 import com.accenture.cdi.widen.data.TeddySensor;
 import com.example.pagewiden.fragments.MaSphereContainerFragment;
 import com.example.pagewiden.fragments.MonStoreFragmentContainer;
@@ -34,7 +33,6 @@ public class MainActivity extends FragmentActivity implements
     private QeoFactory qeo = null;
     private WidenQeoConnectionListener wQCL = null;
     private EventReader<TeddySensor> eventReaderTeddyHere = null;
-    private EventReader<BookSensor> eventReaderBookHere = null;
 
 	MaSphereContainerFragment maSphere;
 
@@ -197,9 +195,6 @@ public class MainActivity extends FragmentActivity implements
 		if (eventReaderTeddyHere != null) {
 			eventReaderTeddyHere.close();
        	}
-       	if (eventReaderBookHere != null) {
-       		eventReaderBookHere.close();
-       	}
         if (qeo != null) {
             qeo.close();
         }
@@ -216,7 +211,6 @@ public class MainActivity extends FragmentActivity implements
 	        // This is a good place to create readers and writers
 	        try {
 				eventReaderTeddyHere = qeo.createEventReader(TeddySensor.class, new EventListenerTeddyHere());
-				eventReaderBookHere = qeo.createEventReader(BookSensor.class, new EventListenerBookHere());
 				
 			} catch (QeoException e) {
 				e.printStackTrace();
@@ -251,25 +245,8 @@ public class MainActivity extends FragmentActivity implements
 
 	}
 
-	public class EventListenerBookHere implements EventReaderListener<BookSensor> {
-
-		@Override
-		public void onData(BookSensor bookHere) {
-			onBookHere();
-		}
-
-		@Override
-		public void onNoMoreData() {	
-		}
-
-	}
-
 	private void onTeddyHere() {
 		maSphere.onTeddyHere();
-	}
-
-	private void onBookHere() {
-		maSphere.onBookHere();
 	}
 
 }
