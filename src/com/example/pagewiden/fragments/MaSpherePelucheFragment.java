@@ -7,6 +7,7 @@ import com.example.pagewiden.model.MyObjectAction;
 import com.example.pagewiden.model.MyObjectParam;
 import com.example.pagewiden.model.Scenario;
 import com.example.pagewiden.model.ScenarioBlock;
+import com.example.pagewiden.model.ScenarioList;
 import com.example.pagewiden.model.ScenarioListDownloadable;
 
 import android.content.Intent;
@@ -41,10 +42,9 @@ public class MaSpherePelucheFragment extends Fragment {
 		TextView tvLaunchVideo = (TextView)v.findViewById(R.id.peluche_launch_video);
 		Button btAddScenario = (Button)v.findViewById(R.id.peluche_add_scenario);
 		final VideoView vvVideoPeluche = (VideoView) v.findViewById(R.id.peluche_video);
-		
-		ScenarioListDownloadable scenarioListDownloadable = ScenarioListDownloadable.get(getActivity());
-		
-		if(!scenarioListDownloadable.isScenarioInList("Racontes moi ...")){
+
+		ScenarioList scenarioList = ScenarioList.get(getActivity());
+		if(!scenarioList.isDownloaded("Racontes moi ...")){
 			tvLaunchVideo.setVisibility(8);
 			vvVideoPeluche.setVisibility(8);
 			btAddScenario.setOnClickListener(new OnClickListener() {
@@ -148,7 +148,7 @@ public class MaSpherePelucheFragment extends Fragment {
 		scenario.addBlocks(scenarioBlock);
 		
 		ScenarioListDownloadable scenarioList = ScenarioListDownloadable.get(getActivity());
-		
+
 		scenarioList.addScenario(scenario);
 	}
 }

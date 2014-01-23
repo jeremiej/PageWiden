@@ -133,16 +133,12 @@ public class MaSphereContainerFragment extends Fragment {
 	public void onBookHere() {
     	Bundle arguments = new Bundle();
     	arguments.putInt("launchVideo", 1);
+    	FragmentTransaction transaction = null;
     	mPelucheFragment = new MaSpherePelucheFragment();
     	mPelucheFragment.setArguments(arguments);
-		FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
-		transaction.replace(R.id.peluche_container, mPelucheFragment);
-		transaction.commit();
+    	transaction = getChildFragmentManager().beginTransaction();
+    	transaction.replace(R.id.peluche_container, mPelucheFragment);
+		transaction.commitAllowingStateLoss();
 	}
 
-	@Override
-	public void onSaveInstanceState(Bundle outState) {
-		// TODO Auto-generated method stub
-		super.onSaveInstanceState(outState);
-	}
 }
