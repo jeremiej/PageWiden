@@ -103,9 +103,13 @@ public class EditionScenarioDeclencheurActivity extends Activity {
 						blockDeclencheur.setMyObjectParam(selectedParam);	
 						currentScenario.setDeclencheur(blockDeclencheur);		    	
 				    }
-					Intent i = new Intent(getApplicationContext(), ScenarioDetailsActivity.class);
-					i.putExtra("id", scenarioNb);
-					startActivity(i);
+				    // JGU
+//					Intent i = new Intent(getApplicationContext(), ScenarioDetailsActivity.class);
+//					i.putExtra("id", scenarioNb);
+//					startActivity(i);
+					setResult(RESULT_OK);
+					finish();
+					///JGU
 				}else{															
 					mNewScenario = NewScenario.get(getApplicationContext());
 					
@@ -130,9 +134,12 @@ public class EditionScenarioDeclencheurActivity extends Activity {
 						blockDeclencheur.setMyObjectParam(selectedParam);	
 						mNewScenario.setDeclencheur(blockDeclencheur);		    	
 				    }
-												
+
+					// JGU
 					Intent i = new Intent(getApplicationContext(), EditionScenarioBlockActivity.class);
-					startActivity(i);	
+//					startActivity(i);
+					startActivityForResult(i, 0);
+					///JGU
 				}
 			}
 		});
@@ -278,4 +285,12 @@ public class EditionScenarioDeclencheurActivity extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		if (resultCode == RESULT_OK) {
+			setResult(RESULT_OK);
+			finish();
+		}
+	}
 }

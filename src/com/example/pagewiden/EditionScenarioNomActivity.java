@@ -2,10 +2,6 @@ package com.example.pagewiden;
 
 import java.util.ArrayList;
 
-import com.example.pagewiden.model.NewScenario;
-import com.example.pagewiden.model.Scenario;
-import com.example.pagewiden.model.ScenarioList;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +11,10 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.pagewiden.model.NewScenario;
+import com.example.pagewiden.model.Scenario;
+import com.example.pagewiden.model.ScenarioList;
+
 public class EditionScenarioNomActivity extends Activity {
 
 	@Override
@@ -23,6 +23,7 @@ public class EditionScenarioNomActivity extends Activity {
 		setContentView(R.layout.activity_edition_scenario_nom);
 		
 		Intent i = getIntent();
+
 		final int scenarioNb = i.getIntExtra("scenarioNb", 999);
 		
 		if(scenarioNb!=999){
@@ -50,17 +51,24 @@ public class EditionScenarioNomActivity extends Activity {
 					currentScenario.setScenarioDescription(evDescription.getText().toString());
 					scenarioArray.set(scenarioNb, currentScenario);
 					scenarioList.setScenarioArray(scenarioArray);
-					
-					Intent i = new Intent(getApplicationContext(), ScenarioDetailsActivity.class);
-					i.putExtra("id", scenarioNb);
-					startActivity(i);
+
+					// JGU
+//					Intent i = new Intent(getApplicationContext(), ScenarioDetailsActivity.class);
+//					i.putExtra("id", scenarioNb);
+//					startActivity(i);
+					setResult(RESULT_OK);
+					finish();
+					///JGU
 				}else{
 					NewScenario newScenario = NewScenario.get(getApplicationContext());
 					newScenario.setScenarioTitle(evName.getText().toString());
 					newScenario.setScenarioDescription(evDescription.getText().toString());
-					
+
+					// JGU
 					Intent i = new Intent(getApplicationContext(), EditionScenarioDeclencheurActivity.class);
-					startActivity(i);					
+//					startActivity(i);
+					startActivityForResult(i, 0);
+					///JGU
 				}
 			}
 		});
@@ -73,4 +81,12 @@ public class EditionScenarioNomActivity extends Activity {
 		return true;
 	}
 
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		if (resultCode == RESULT_OK) {
+			setResult(RESULT_OK);
+			finish();
+		}
+	}
 }

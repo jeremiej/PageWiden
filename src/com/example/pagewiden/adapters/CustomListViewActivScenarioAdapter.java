@@ -2,19 +2,16 @@ package com.example.pagewiden.adapters;
 
 import java.util.ArrayList;
 
-import com.example.pagewiden.R;
-import com.example.pagewiden.model.Scenario;
-import com.example.pagewiden.model.ScenarioList;
-
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.pagewiden.R;
+import com.example.pagewiden.model.Scenario;
 
 public class CustomListViewActivScenarioAdapter extends ArrayAdapter<Object> {
 	private Context context;
@@ -66,7 +63,12 @@ public class CustomListViewActivScenarioAdapter extends ArrayAdapter<Object> {
 		
 		return row;
 	}
-	
+
+	public void setData(ArrayList<Object> data) {
+		this.data = data;
+	}
+
+
 	static class RecordHolder {
 		TextView scenarioName;
 		ImageView activityIndicator;

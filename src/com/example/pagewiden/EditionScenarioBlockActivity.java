@@ -28,7 +28,7 @@ import android.widget.Button;
 import android.widget.Spinner;
 
 public class EditionScenarioBlockActivity extends Activity {
-	
+
 	private Spinner mSpinnerObject, mSpinnerAction, mSpinnerParam;
 	private NewScenario mNewScenario;
 	private ScenarioList mScenarioList;
@@ -113,9 +113,13 @@ public class EditionScenarioBlockActivity extends Activity {
 					
 					mScenarioList.setScenarioArray(scenarioArray);
 					
-					Intent i = new Intent(getApplicationContext(), ScenarioDetailsActivity.class);
-					i.putExtra("id", scenarioNb);
-					startActivity(i);
+					// JGU
+					setResult(RESULT_OK);
+					finish();
+//					Intent i = new Intent(getApplicationContext(), ScenarioDetailsActivity.class);
+//					i.putExtra("id", scenarioNb);
+//					startActivity(i);
+					///JGU
 				}else{
 					mNewScenario = NewScenario.get(getApplicationContext());
 					MyObject selectedObject = (MyObject)mSpinnerObject.getSelectedItem();
@@ -136,10 +140,14 @@ public class EditionScenarioBlockActivity extends Activity {
 					mScenarioList.addButtonAddScenario();				
 					
 					mNewScenario.destroy();
-					
-		        	Intent i = new Intent(getApplicationContext(), MainActivity.class);
-		        	i.putExtra("targetTab", 1);
-		        	startActivity(i);
+
+					// JGU
+//		        	Intent i = new Intent(getApplicationContext(), MainActivity.class);
+//		        	i.putExtra("targetTab", 1);
+//		        	startActivity(i);
+					setResult(RESULT_OK);
+					finish();
+					///JGU
 				}
 			}
 		});
@@ -165,9 +173,12 @@ public class EditionScenarioBlockActivity extends Activity {
 					if(mNewScenario.getBlockArraySize()==1){
 						mNewScenario.setScenarioIcon(selectedObject.getIcon());
 					}
-														
+
+					// JGU
 					Intent i = new Intent(getApplicationContext(), EditionScenarioBlockActivity.class);
-					startActivity(i);
+//					startActivity(i);
+	                startActivityForResult(i, 0);
+	                ///JGU
 				}
 			});
 		}
@@ -265,6 +276,15 @@ public class EditionScenarioBlockActivity extends Activity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		if (resultCode == RESULT_OK) {
+			setResult(RESULT_OK);
+			finish();
+		}
 	}
 
 }

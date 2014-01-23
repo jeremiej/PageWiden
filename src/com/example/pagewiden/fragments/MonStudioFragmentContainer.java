@@ -44,11 +44,12 @@ public class MonStudioFragmentContainer extends Fragment {
 				Intent i;
 				if(getCount()-1 == position){
 					i = new Intent(context, EditionScenarioNomActivity.class);
+					i.putExtra("mode", ScenarioDetailsActivity.MODE_CREATE);
 				}else{
 					i = new Intent(context, ScenarioDetailsActivity.class);
 	                i.putExtra("id", position);
 				}                
-                startActivity(i);
+                startActivityForResult(i, 0);
             }
 		});
 		return v;
@@ -65,6 +66,12 @@ public class MonStudioFragmentContainer extends Fragment {
 		customGridAdapter = new CustomGridViewAdapter(getActivity(), R.layout.studio_gridrow_layout, gridArray);
 		gridView.setAdapter(customGridAdapter);
 		super.onResume();
+	}
+
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		
 	}
 
 }
