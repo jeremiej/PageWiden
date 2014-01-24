@@ -3,10 +3,11 @@ package com.accenture.cdi.widen.station.fragments;
 import java.util.ArrayList;
 
 import android.app.AlertDialog;
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,7 +36,7 @@ public class MaSphereContainerFragment extends Fragment {
 		this.mPorteFragment = new MaSpherePorteFragment();
 		this.mListScenarioFragment = new MaSphereListScenarioFragment();
 		
-		FragmentTransaction transaction = getChildFragmentManager().beginTransaction();		
+		FragmentTransaction transaction = getFragmentManager().beginTransaction();		
 		transaction.add(R.id.webcam_container, this.mWebcamFragment);
 		transaction.add(R.id.barometre_container, this.mBarometreFragment);
 		transaction.add(R.id.porte_container, this.mPorteFragment);
@@ -76,7 +77,7 @@ public class MaSphereContainerFragment extends Fragment {
 								objectArray.set(3, peluche);
 								myObjectList.setMyObjectArray(objectArray);
 								
-								FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+								FragmentTransaction transaction = getFragmentManager().beginTransaction();
 						    	Bundle arguments = new Bundle();
 						    	arguments.putInt("launchVideo", 0);
 								mPelucheFragment = new MaSpherePelucheFragment();
@@ -112,9 +113,14 @@ public class MaSphereContainerFragment extends Fragment {
     	FragmentTransaction transaction = null;
     	mPelucheFragment = new MaSpherePelucheFragment();
     	mPelucheFragment.setArguments(arguments);
-    	transaction = getChildFragmentManager().beginTransaction();
+    	transaction = getFragmentManager().beginTransaction();
     	transaction.replace(R.id.peluche_container, mPelucheFragment);
 		transaction.commitAllowingStateLoss();
 	}
 
+	public void refreshScenarioListFragment() {
+		if (this.mListScenarioFragment != null) {
+			this.mListScenarioFragment.refreshScenarioList();
+		}
+	}
 }

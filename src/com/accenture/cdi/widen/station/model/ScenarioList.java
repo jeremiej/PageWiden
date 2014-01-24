@@ -167,13 +167,13 @@ public class ScenarioList {
 		mScenarioArray.add(s);
 	}
 	
-	public int nbScenario(){
+	public int getNbScenario(){
 		return this.getScenarioArray().size();
 	}
 	
 	public void removeLastScenario(){
 		ArrayList<Object> arrayList = this.getScenarioArray();
-		arrayList.remove(this.nbScenario()-1);
+		arrayList.remove(this.getNbScenario()-1);
 	}
 	
 	public void addButtonAddScenario(){

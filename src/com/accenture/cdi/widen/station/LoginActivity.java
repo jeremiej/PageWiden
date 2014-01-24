@@ -46,7 +46,7 @@ public class LoginActivity extends Activity {
 					mUser = User.get(getApplicationContext());
 					mUser.setLogin(vLoginText);
 					Intent i = new Intent(LoginActivity.this, MainActivity.class);
-					startActivity(i);
+					startActivityForResult(i, 0);
 				}
 			}
 		});
@@ -59,4 +59,9 @@ public class LoginActivity extends Activity {
 		return true;
 	}
 
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		finish();
+		super.onActivityResult(requestCode, resultCode, data);
+	}
 }

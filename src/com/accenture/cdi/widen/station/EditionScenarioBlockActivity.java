@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -50,11 +49,11 @@ public class EditionScenarioBlockActivity extends Activity {
 		setupActionBar();
 		
 		Intent i = getIntent();
-		final int scenarioNb = i.getIntExtra("scenarioNb", 999);
 		editMode = i.getStringExtra("editMode");
-		final int blockNb = i.getIntExtra("blockNb", 999);
+		final int scenarioNb = i.getIntExtra("position", -1);
+		final int blockNb = i.getIntExtra("blockNb", -1);
 		
-		if(editMode!=null){
+		if (editMode != null) {
 			Button continueButton = (Button)findViewById(R.id.scenario_edit_continue);
 			continueButton.setVisibility(8);
 		}
@@ -68,20 +67,19 @@ public class EditionScenarioBlockActivity extends Activity {
 		mSpinnerParam.setClickable(false);
 				
 		addItemsObjectSpinner();
-		
 		addListenerOnObjectSpinnerItemSelection();
 
-		Button validationButton = (Button)findViewById(R.id.scenario_edit_validation);
+		Button validationButton = (Button) findViewById(R.id.scenario_edit_validation);
 		validationButton.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 				mScenarioList = ScenarioList.get(getApplicationContext());
 				
-				if(editMode!=null){
-					Scenario currentScenario = new Scenario();
+				if (editMode != null) {
+					Scenario currentScenario = null;
 					ArrayList<Object> scenarioArray = mScenarioList.getScenarioArray();
-					currentScenario = (Scenario)scenarioArray.get(scenarioNb);
+					currentScenario = (Scenario) scenarioArray.get(scenarioNb);
 					
 					MyObject selectedObject = (MyObject)mSpinnerObject.getSelectedItem();
 					MyObjectAction selectedAction = (MyObjectAction)mSpinnerAction.getSelectedItem();
@@ -95,7 +93,7 @@ public class EditionScenarioBlockActivity extends Activity {
 						currentBlock.setMyObjectParam(selectedParam);
 						blockArray.set(blockNb, currentBlock);
 						currentScenario.setBlocks(blockArray);						
-					}else{
+					} else {
 						ScenarioBlock blockNew = new ScenarioBlock();
 						
 						blockNew.setMyObject(selectedObject);
@@ -104,23 +102,16 @@ public class EditionScenarioBlockActivity extends Activity {
 						
 						currentScenario.addBlocks(blockNew);
 					}
-					
-					if(currentScenario.getBlockArraySize()==1){
-						currentScenario.setScenarioIcon(selectedObject.getIcon());
-					}					
-					
+
 					scenarioArray.set(scenarioNb, currentScenario);
-					
 					mScenarioList.setScenarioArray(scenarioArray);
-					
-					// JGU
-					setResult(RESULT_OK);
+
+					Intent i = new Intent();
+					i.putExtra("position", scenarioNb);
+					setResult(RESULT_OK, i);
 					finish();
-//					Intent i = new Intent(getApplicationContext(), ScenarioDetailsActivity.class);
-//					i.putExtra("id", scenarioNb);
-//					startActivity(i);
-					///JGU
-				}else{
+
+				} else {
 					mNewScenario = NewScenario.get(getApplicationContext());
 					MyObject selectedObject = (MyObject)mSpinnerObject.getSelectedItem();
 					MyObjectAction selectedAction = (MyObjectAction)mSpinnerAction.getSelectedItem();
@@ -130,29 +121,23 @@ public class EditionScenarioBlockActivity extends Activity {
 					blockNew.setMyObjectAction(selectedAction);
 					blockNew.setMyObjectParam(selectedParam);
 					mNewScenario.addBlocks(blockNew);
-					
-					if(mNewScenario.getBlockArraySize()==1){
-						mNewScenario.setScenarioIcon(selectedObject.getIcon());
-					}					
-					
+
 					mScenarioList.removeLastScenario();
 					mScenarioList.addScenario(mNewScenario);
+					int position = mScenarioList.getNbScenario() - 1;
 					mScenarioList.addButtonAddScenario();				
 					
 					mNewScenario.destroy();
 
-					// JGU
-//		        	Intent i = new Intent(getApplicationContext(), MainActivity.class);
-//		        	i.putExtra("targetTab", 1);
-//		        	startActivity(i);
-					setResult(RESULT_OK);
+					Intent i = new Intent();
+					i.putExtra("position", position);
+					setResult(RESULT_OK, i);
 					finish();
-					///JGU
 				}
 			}
 		});
 		
-		if(editMode == null){
+		if (editMode == null){
 			Button continueButton = (Button)findViewById(R.id.scenario_edit_continue);
 			continueButton.setOnClickListener(new OnClickListener() {
 				
@@ -169,16 +154,10 @@ public class EditionScenarioBlockActivity extends Activity {
 					blockNew.setMyObjectAction(selectedAction);
 					blockNew.setMyObjectParam(selectedParam);
 					mNewScenario.addBlocks(blockNew);	
-					
-					if(mNewScenario.getBlockArraySize()==1){
-						mNewScenario.setScenarioIcon(selectedObject.getIcon());
-					}
 
-					// JGU
 					Intent i = new Intent(getApplicationContext(), EditionScenarioBlockActivity.class);
-//					startActivity(i);
+					i.putExtra("position", scenarioNb);
 	                startActivityForResult(i, 0);
-	                ///JGU
 				}
 			});
 		}
@@ -244,8 +223,6 @@ public class EditionScenarioBlockActivity extends Activity {
 			}
 		});
 	}
-	
-	
 
 	/**
 	 * Set up the {@link android.app.ActionBar}.
@@ -272,7 +249,7 @@ public class EditionScenarioBlockActivity extends Activity {
 			//
 			// http://developer.android.com/design/patterns/navigation.html#up-vs-back
 			//
-			NavUtils.navigateUpFromSameTask(this);
+//			NavUtils.navigateUpFromSameTask(this);
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
@@ -281,8 +258,12 @@ public class EditionScenarioBlockActivity extends Activity {
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
+		int position = -1;
 		if (resultCode == RESULT_OK) {
-			setResult(RESULT_OK);
+			position = data.getIntExtra("position", -1);
+			Intent i = new Intent();
+			i.putExtra("position", position);
+			setResult(RESULT_OK, i);
 			finish();
 		}
 	}

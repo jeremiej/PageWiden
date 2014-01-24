@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="50dp"
+    android:paddingRight="50dp" >
+    
+    <TextView 
+        android:id="@+id/scenario_edit_name_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/scenario_edit_name_title"
+        android:paddingTop="20sp"
+        android:textColor="#48bdec"
+        android:textSize="35sp"/>
+    
+    <EditText
+        android:id="@+id/scenario_edit_name"
+        android:hint="@string/scenario_edit_name_placeholder"
+        android:inputType="textCapSentences"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:layout_marginTop="30dp">
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/scenario_edit_description"
+        android:hint="@string/scenario_edit_description_placeholder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textCapSentences|textMultiLine"
+        android:textSize="25sp"
+        android:layout_marginTop="20dp" />
+    
+    <Button 
+        android:id="@+id/scenario_edit_validation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/scenario_edit_name_validation_button"
+        android:textSize="25sp"
+        android:layout_marginTop="20dp"/>
+
+</LinearLayout>

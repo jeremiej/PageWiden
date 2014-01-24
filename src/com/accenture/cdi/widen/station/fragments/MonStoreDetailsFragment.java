@@ -2,9 +2,8 @@ package com.accenture.cdi.widen.station.fragments;
 
 import java.util.ArrayList;
 
-import android.content.Intent;
+import android.app.Fragment;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -14,8 +13,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.accenture.cdi.widen.station.MainActivity;
 import com.accenture.cdi.widen.station.R;
-import com.accenture.cdi.widen.station.ScenarioDetailsActivity;
 import com.accenture.cdi.widen.station.adapters.CustomListViewScenarioBlockAdapter;
 import com.accenture.cdi.widen.station.model.MyObject;
 import com.accenture.cdi.widen.station.model.MyObjectParam;
@@ -81,9 +80,7 @@ public class MonStoreDetailsFragment extends Fragment {
 					buttonDownload.setEnabled(false);
 		        	buttonDownload.setClickable(false);
 		        	
-		        	Intent i = new Intent(getActivity().getApplicationContext(), ScenarioDetailsActivity.class);
-		        	i.putExtra("id", scenarioList.getSize()-2);
-		        	startActivity(i);
+		        	((MainActivity) getActivity()).monStoreViewOneScenarioDetails(scenarioList.getSize() - 2);
 				}
 			});
         }

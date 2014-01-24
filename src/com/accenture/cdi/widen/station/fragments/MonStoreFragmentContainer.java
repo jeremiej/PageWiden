@@ -1,83 +1,49 @@
 package com.accenture.cdi.widen.station.fragments;
 
-import java.util.ArrayList;
-
+import android.app.Fragment;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ListView;
 
+import com.accenture.cdi.widen.station.MainActivity;
 import com.accenture.cdi.widen.station.R;
-import com.accenture.cdi.widen.station.adapters.CustomListViewMonStoreAdapter;
-import com.accenture.cdi.widen.station.model.ScenarioListDownloadable;
 
 public class MonStoreFragmentContainer extends Fragment {
 
-	private MonStoreDetailsFragment nestedFragment = null;
+	public static final String ARG_MODE = "mode";
 
-	private ScenarioListDownloadable mScenarioDownloadableList;
-	private ArrayList<Object> mScenarioDownloadableArray;
+	public static final int STORE_MODE_VIEW_ALL = 0;
+	public static final int STORE_MODE_VIEW_ONE = 1;
 
-	private ListView lv = null;
-	
-	private CustomListViewMonStoreAdapter customListViewMonStoreAdapter;
+	private int mode = -1;
 
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.fragment_store_container, container, false);
-		this.lv = (ListView) v.findViewById(R.id.scenario_list);
-		mScenarioDownloadableList = ScenarioListDownloadable.get(inflater.getContext());
-		mScenarioDownloadableArray = mScenarioDownloadableList.getScenarioArray();
-		
-		FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
-    	Bundle arguments = new Bundle();
-    	arguments.putInt("scenarioId", 0);
-    	this.nestedFragment = new MonStoreDetailsFragment();
-    	this.nestedFragment.setArguments(arguments);
-		transaction.add(R.id.item_detail_container, this.nestedFragment);
-		transaction.commit();
 
-		lv.setOnItemClickListener(new OnItemClickListener() {
-			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
-				Bundle arguments = new Bundle();
-				arguments.putInt("scenarioId", position);
-		    	nestedFragment = new MonStoreDetailsFragment();
-		    	nestedFragment.setArguments(arguments);
-				FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
-				transaction.replace(R.id.item_detail_container, nestedFragment);
-				transaction.commit();
+		View v = inflater.inflate(R.layout.fragment_mon_store_container, container, false);
+
+		Integer rawMode = null;
+		this.mode = STORE_MODE_VIEW_ALL;
+		if (this.getArguments() != null) {
+			rawMode = (Integer) this.getArguments().get(ARG_MODE);
+			if (rawMode != null) {
+				this.mode = rawMode.intValue();
+			} else {
+				this.mode = STORE_MODE_VIEW_ALL;
 			}
-		});
+		}
+
+		switch (this.mode) {
+		case STORE_MODE_VIEW_ALL:
+			((MainActivity) getActivity()).monStoreViewAllDownloadableScenarios();
+			break;
+		default:
+			break;
+		}
 
 		return v;
 
 	}
-	
-	public void onActivityCreated(Bundle savedInstanceState) {
-		super.onActivityCreated(savedInstanceState);
-		customListViewMonStoreAdapter = new CustomListViewMonStoreAdapter(this.lv.getContext(), R.layout.store_list_item, mScenarioDownloadableArray);
-		lv.setAdapter(customListViewMonStoreAdapter);
-    }
 
-	@Override
-	public void onPause() {
-		super.onPause();
-		if (this.nestedFragment != null) {
-			FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
-			transaction.remove(this.nestedFragment);
-			transaction.commit();
-		}
-	}
-	
-	@Override
-	public void onResume() {		
-		customListViewMonStoreAdapter.notifyDataSetChanged();
-		super.onResume();
-	}
 }

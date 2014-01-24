@@ -31,7 +31,7 @@ public class CustomGridViewAdapter extends ArrayAdapter<Object> {
 
     public int getCount() {
     	ScenarioList scenarioList = ScenarioList.get(context);
-        return scenarioList.nbScenario();
+        return scenarioList.getNbScenario();
     }
 
     public Object getItem(int position) {

@@ -10,13 +10,13 @@ import org.qeo.android.QeoConnectionListener;
 import org.qeo.exception.QeoException;
 
 import android.app.ActionBar;
+import android.app.Activity;
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,12 +24,19 @@ import android.view.MenuItem;
 import com.accenture.cdi.widen.data.TeddySensor;
 import com.accenture.cdi.widen.station.fragments.MaSphereContainerFragment;
 import com.accenture.cdi.widen.station.fragments.MonStoreFragmentContainer;
+import com.accenture.cdi.widen.station.fragments.MonStoreFragmentViewOneScenario;
+import com.accenture.cdi.widen.station.fragments.MonStoreViewAllDownloadableScenarios;
 import com.accenture.cdi.widen.station.fragments.MonStudioFragmentContainer;
+import com.accenture.cdi.widen.station.fragments.MonStudioFragmentViewOneScenario;
+import com.accenture.cdi.widen.station.fragments.MonStudioFragmentViewAllScenarios;
 import com.accenture.cdi.widen.station.model.User;
 
-public class MainActivity extends FragmentActivity implements
+public class MainActivity extends Activity implements
 		ActionBar.TabListener {
 
+	public static final int START_ACTIVITY_CREATE_SCENARIO = 0;
+	public static final int START_ACTIVITY_EDIT_SCENARIO = 1;
+	
     private QeoFactory qeo = null;
     private WidenQeoConnectionListener wQCL = null;
     private EventReader<TeddySensor> eventReaderTeddyHere = null;
@@ -68,7 +75,7 @@ public class MainActivity extends FragmentActivity implements
 		// Create the adapter that will return a fragment for each of the three
 		// primary sections of the app.
 		mSectionsPagerAdapter = new SectionsPagerAdapter(
-				getSupportFragmentManager());
+				getFragmentManager());
 
 		// Set up the ViewPager with the sections adapter.
 		mViewPager = (ViewPager) findViewById(R.id.pager);
@@ -136,7 +143,6 @@ public class MainActivity extends FragmentActivity implements
 	@Override
 	public void onTabReselected(ActionBar.Tab tab,
 			FragmentTransaction fragmentTransaction) {
-		System.out.println("+++++++++++TEST");
 	}
 
 	/**
@@ -247,6 +253,76 @@ public class MainActivity extends FragmentActivity implements
 
 	private void onTeddyHere() {
 		maSphere.onTeddyHere();
+	}
+
+	// Manage fragments in "Mon Studio"
+	public void monStudioViewAllScenarios() {
+		MonStudioFragmentViewAllScenarios fragment = new MonStudioFragmentViewAllScenarios();
+		FragmentTransaction transaction = getFragmentManager().beginTransaction();
+		transaction.replace(R.id.mon_studio_container, fragment);
+		transaction.commit();
+		maSphere.refreshScenarioListFragment();
+	}
+
+	public void monStudioViewOneScenarioDetails(int scenarioPosition) {
+		MonStudioFragmentViewOneScenario fragment = new MonStudioFragmentViewOneScenario();
+		Bundle args = new Bundle();
+		args.putInt("id", scenarioPosition);
+		fragment.setArguments(args);
+		FragmentTransaction transaction = getFragmentManager().beginTransaction();
+		transaction.replace(R.id.mon_studio_container, fragment);
+		transaction.commit();
+	}
+
+	public void monStudioStartScenarioCreationName() {
+		Intent i = new Intent(this, EditionScenarioNomActivity.class);
+		i.putExtra("mode", ScenarioDetailsActivity.MODE_CREATE);
+		startActivityForResult(i, START_ACTIVITY_CREATE_SCENARIO);
+	}
+
+	// Mon Store
+	public void monStoreViewAllDownloadableScenarios() {
+		MonStoreViewAllDownloadableScenarios fragment = new MonStoreViewAllDownloadableScenarios();
+		FragmentTransaction transaction = getFragmentManager().beginTransaction();
+		transaction.replace(R.id.mon_store_container, fragment);
+		transaction.commit();
+		maSphere.refreshScenarioListFragment();
+	}
+
+	public void monStoreViewOneScenarioDetails(int scenarioPosition) {
+		MonStoreFragmentViewOneScenario fragment = new MonStoreFragmentViewOneScenario();
+		Bundle args = new Bundle();
+		args.putInt("id", scenarioPosition);
+		fragment.setArguments(args);
+		FragmentTransaction transaction = getFragmentManager().beginTransaction();
+		transaction.replace(R.id.mon_store_container, fragment);
+		transaction.commit();
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+		int position = -1;
+
+		switch (resultCode) {
+		case RESULT_OK:
+			switch (requestCode) {
+			case START_ACTIVITY_CREATE_SCENARIO:
+				position = data.getIntExtra("position", -1);
+				monStudioViewOneScenarioDetails(position);
+				break;
+			case START_ACTIVITY_EDIT_SCENARIO:
+				position = data.getIntExtra("position", -1);
+				monStudioViewOneScenarioDetails(position);
+				break;
+			default:
+				break;
+			}
+		default:
+			break;
+		}
+
+		super.onActivityResult(requestCode, resultCode, data);
 	}
 
 }

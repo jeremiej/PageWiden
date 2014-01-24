@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -24,9 +23,9 @@ public class EditionScenarioNomActivity extends Activity {
 		
 		Intent i = getIntent();
 
-		final int scenarioNb = i.getIntExtra("scenarioNb", 999);
+		final int scenarioNb = i.getIntExtra("scenarioNb", -1);
 		
-		if(scenarioNb!=999){
+		if (scenarioNb != -1){
 			ScenarioList scenarioList = ScenarioList.get(getApplicationContext());
 			ArrayList<Object> scenarioArray = scenarioList.getScenarioArray();
 			Scenario currentScenario = (Scenario)scenarioArray.get(scenarioNb);
@@ -43,7 +42,7 @@ public class EditionScenarioNomActivity extends Activity {
 			public void onClick(View v) {
 				EditText evName = (EditText)findViewById(R.id.scenario_edit_name);
 				EditText evDescription = (EditText)findViewById(R.id.scenario_edit_description);
-				if(scenarioNb!=999){
+				if (scenarioNb != -1){
 					ScenarioList scenarioList = ScenarioList.get(getApplicationContext());
 					ArrayList<Object> scenarioArray = scenarioList.getScenarioArray();
 					Scenario currentScenario = (Scenario)scenarioArray.get(scenarioNb);
@@ -56,10 +55,13 @@ public class EditionScenarioNomActivity extends Activity {
 //					Intent i = new Intent(getApplicationContext(), ScenarioDetailsActivity.class);
 //					i.putExtra("id", scenarioNb);
 //					startActivity(i);
-					setResult(RESULT_OK);
-					finish();
 					///JGU
-				}else{
+					Intent i = new Intent();
+					i.putExtra("position", scenarioNb);
+					setResult(RESULT_OK, i);
+					finish();
+
+				} else {
 					NewScenario newScenario = NewScenario.get(getApplicationContext());
 					newScenario.setScenarioTitle(evName.getText().toString());
 					newScenario.setScenarioDescription(evDescription.getText().toString());
@@ -75,17 +77,14 @@ public class EditionScenarioNomActivity extends Activity {
 	}
 
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.edition_scenario_nom, menu);
-		return true;
-	}
-
-	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
+		int position = -1;
 		if (resultCode == RESULT_OK) {
-			setResult(RESULT_OK);
+			position = data.getIntExtra("position", -1);
+			Intent i = new Intent();
+			i.putExtra("position", position);
+			setResult(RESULT_OK, i);
 			finish();
 		}
 	}

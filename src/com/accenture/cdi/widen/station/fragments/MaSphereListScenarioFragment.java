@@ -2,8 +2,8 @@ package com.accenture.cdi.widen.station.fragments;
 
 import java.util.ArrayList;
 
+import android.app.Fragment;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,9 +68,15 @@ public class MaSphereListScenarioFragment extends Fragment {
 
 	@Override
 	public void onResume() {
-		fillActiveScenarioList();
-		this.activScenarioAdapter.setData(activScenarioArray);
-		generateScenarioItemViews();
+		refreshScenarioList();
 		super.onResume();
+	}
+
+	public void refreshScenarioList() {
+		if (this.isResumed()) {
+			fillActiveScenarioList();
+			this.activScenarioAdapter.setData(activScenarioArray);
+			generateScenarioItemViews();
+		}
 	}
 }

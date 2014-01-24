@@ -49,5 +49,6 @@
 	<string name="peluche_add_scenario">Télécharger un nouveau \nscénario pour cet objet</string>
 	<string name="no_activ_scenario">Aucun scénario actif</string>
 	<string name="teddy_accept_deny">Une peluche Furby souhaite rejoindre votre sphère, voulez-vous l\'accepter ?</string>
+	<string name="OK">OK</string>
 	
 </resources>

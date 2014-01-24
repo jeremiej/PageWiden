@@ -7,8 +7,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -42,7 +40,7 @@ public class EditionScenarioDeclencheurActivity extends Activity {
 	ArrayList<Object> objectList;
 	ArrayList<Object> actionList;
 	ArrayList<Object> paramList;
-	
+
 	int positionObject;
 	int positionAction;
 	int positionParam;
@@ -56,7 +54,7 @@ public class EditionScenarioDeclencheurActivity extends Activity {
 		setupActionBar();
 
 		Intent i = getIntent();
-		scenarioNb = i.getIntExtra("scenarioNb", 999);
+		scenarioNb = i.getIntExtra("scenarioNb", -1);
 		
 		mSpinnerAction = (Spinner)findViewById(R.id.scenario_edit_trigger_action_spinner);
 		mSpinnerAction.setEnabled(false);
@@ -67,29 +65,31 @@ public class EditionScenarioDeclencheurActivity extends Activity {
 		mSpinnerParam.setClickable(false);
 
 		addItemsObjectSpinner();
-		
 		addListenerOnObjectSpinnerItemSelection();
+
 		Button validationButton = (Button)findViewById(R.id.scenario_edit_validation);
-		validationButton.setOnClickListener(new OnClickListener() {			
+		validationButton.setOnClickListener(new OnClickListener() {
+
 			@Override
 			public void onClick(View v) {	
-				RadioButton declenchementUtilisateur = (RadioButton)findViewById(R.id.declenchement_utilisateur);
-				boolean isChecked = declenchementUtilisateur.isChecked();
+				RadioButton declenchementUtilisateur = (RadioButton) findViewById(R.id.declenchement_utilisateur);
+				boolean isDeclenchementUtilisateur = declenchementUtilisateur.isChecked();
 				
-				if(scenarioNb!=999){
+				if (scenarioNb != -1) {
 					ScenarioList mScenarioList = ScenarioList.get(getApplicationContext());
-					Scenario currentScenario = new Scenario();
 					ArrayList<Object> scenarioArray = mScenarioList.getScenarioArray();
-					currentScenario = (Scenario)scenarioArray.get(scenarioNb);
+					Scenario currentScenario = (Scenario) scenarioArray.get(scenarioNb);
 					
-				    if(isChecked){
-				    	currentScenario.setScenarioActivite("Désactivé");			    	
+				    if (isDeclenchementUtilisateur){
+				    	currentScenario.setScenarioActivite("Désactivé");
+				    	currentScenario.setDeclenchementUtilisateur(true);
 				    	Bitmap indicateurGris = BitmapFactory.decodeResource(getResources(), R.drawable.indicateur_gris);
 				    	currentScenario.setScenarioIndicateur(indicateurGris);
 				    	Bitmap declencheurUtilisateur = BitmapFactory.decodeResource(getResources(), R.drawable.utilisateur);
 				    	currentScenario.setScenarioIcon(declencheurUtilisateur);
-				    }else{
+				    } else {
 				    	currentScenario.setScenarioActivite("Activé");
+				    	currentScenario.setDeclenchementUtilisateur(false);
 				    	Bitmap indicateurBleu = BitmapFactory.decodeResource(getApplicationContext().getResources(), R.drawable.indicateur_bleu);
 				    	currentScenario.setScenarioIndicateur(indicateurBleu);
 				    	
@@ -100,27 +100,29 @@ public class EditionScenarioDeclencheurActivity extends Activity {
 						ScenarioBlock blockDeclencheur = new ScenarioBlock();
 						blockDeclencheur.setMyObject(selectedObject);
 						blockDeclencheur.setMyObjectAction(selectedAction);
-						blockDeclencheur.setMyObjectParam(selectedParam);	
-						currentScenario.setDeclencheur(blockDeclencheur);		    	
+						blockDeclencheur.setMyObjectParam(selectedParam);
+						currentScenario.setDeclencheur(blockDeclencheur);
+						currentScenario.setScenarioIcon(selectedObject.getIcon());
 				    }
-				    // JGU
-//					Intent i = new Intent(getApplicationContext(), ScenarioDetailsActivity.class);
-//					i.putExtra("id", scenarioNb);
-//					startActivity(i);
-					setResult(RESULT_OK);
+
+					Intent i = new Intent();
+					i.putExtra("position", scenarioNb);
+					setResult(RESULT_OK, i);
 					finish();
-					///JGU
-				}else{															
+
+				} else {															
 					mNewScenario = NewScenario.get(getApplicationContext());
 					
-				    if(isChecked){
-				    	mNewScenario.setScenarioActivite("Désactivé");			    	
+				    if (isDeclenchementUtilisateur) {
+				    	mNewScenario.setScenarioActivite("Désactivé");			   
+				    	mNewScenario.setDeclenchementUtilisateur(true);
 				    	Bitmap indicateurGris = BitmapFactory.decodeResource(getResources(), R.drawable.indicateur_gris);
 				    	mNewScenario.setScenarioIndicateur(indicateurGris);
 				    	Bitmap declencheurUtilisateur = BitmapFactory.decodeResource(getResources(), R.drawable.utilisateur);
 				    	mNewScenario.setScenarioIcon(declencheurUtilisateur);
-				    }else{
+				    } else {
 				    	mNewScenario.setScenarioActivite("Activé");
+				    	mNewScenario.setDeclenchementUtilisateur(false);
 				    	Bitmap indicateurBleu = BitmapFactory.decodeResource(getApplicationContext().getResources(), R.drawable.indicateur_bleu);
 				    	mNewScenario.setScenarioIndicateur(indicateurBleu);
 				    	
@@ -132,19 +134,18 @@ public class EditionScenarioDeclencheurActivity extends Activity {
 						blockDeclencheur.setMyObject(selectedObject);
 						blockDeclencheur.setMyObjectAction(selectedAction);
 						blockDeclencheur.setMyObjectParam(selectedParam);	
-						mNewScenario.setDeclencheur(blockDeclencheur);		    	
+						mNewScenario.setDeclencheur(blockDeclencheur);		
+						mNewScenario.setScenarioIcon(selectedObject.getIcon());
 				    }
 
-					// JGU
 					Intent i = new Intent(getApplicationContext(), EditionScenarioBlockActivity.class);
-//					startActivity(i);
 					startActivityForResult(i, 0);
-					///JGU
+
 				}
 			}
 		});
 				
-		if(scenarioNb != 999){
+		if (scenarioNb != -1){
 			ScenarioList mScenarioList = ScenarioList.get(getApplicationContext());
 			Scenario currentScenario = new Scenario();
 			ArrayList<Object> scenarioArray = mScenarioList.getScenarioArray();
@@ -262,13 +263,6 @@ public class EditionScenarioDeclencheurActivity extends Activity {
 	}
 
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.edition_scenario_declencheur, menu);
-		return true;
-	}
-
-	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case android.R.id.home:
@@ -279,7 +273,7 @@ public class EditionScenarioDeclencheurActivity extends Activity {
 			//
 			// http://developer.android.com/design/patterns/navigation.html#up-vs-back
 			//
-			NavUtils.navigateUpFromSameTask(this);
+//			NavUtils.navigateUpFromSameTask(this);
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
@@ -288,8 +282,12 @@ public class EditionScenarioDeclencheurActivity extends Activity {
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
+		int position = -1;
 		if (resultCode == RESULT_OK) {
-			setResult(RESULT_OK);
+			position = data.getIntExtra("position", -1);
+			Intent i = new Intent();
+			i.putExtra("position", position);
+			setResult(RESULT_OK, i);
 			finish();
 		}
 	}

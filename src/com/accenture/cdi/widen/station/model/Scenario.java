@@ -10,6 +10,7 @@ public class Scenario {
 	String mScenarioDescription;
 	String mScenarioActivite;
 	Bitmap mScenarioIndicateur;
+	boolean isDeclenchementUtilisateur;
 	ScenarioBlock mDeclencheur;
 	ArrayList<Object> mBlocks;
 	
@@ -56,6 +57,14 @@ public class Scenario {
 
 	public void setScenarioIndicateur(Bitmap scenarioIndicateur) {
 		mScenarioIndicateur = scenarioIndicateur;
+	}
+
+	public boolean isDeclenchementUtilisateur() {
+		return isDeclenchementUtilisateur;
+	}
+
+	public void setDeclenchementUtilisateur(boolean isDeclenchementUtilisateur) {
+		this.isDeclenchementUtilisateur = isDeclenchementUtilisateur;
 	}
 
 	public ScenarioBlock getDeclencheur() {
