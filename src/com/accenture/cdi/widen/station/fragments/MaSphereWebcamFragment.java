@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.VideoView;
 
-import com.example.pagewiden.R;
+import com.accenture.cdi.widen.station.R;
 
 public class MaSphereWebcamFragment extends Fragment {
 

@@ -2,9 +2,6 @@ package com.accenture.cdi.widen.station.adapters;
 
 import java.util.ArrayList;
 
-import com.accenture.cdi.widen.station.model.ScenarioBlock;
-import com.example.pagewiden.R;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +9,9 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.accenture.cdi.widen.station.R;
+import com.accenture.cdi.widen.station.model.ScenarioBlock;
 
 
 public class CustomListViewScenarioBlockAdapter extends ArrayAdapter<Object> {

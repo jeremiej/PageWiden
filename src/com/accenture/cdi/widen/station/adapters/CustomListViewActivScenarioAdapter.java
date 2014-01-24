@@ -10,8 +10,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.accenture.cdi.widen.station.R;
 import com.accenture.cdi.widen.station.model.Scenario;
-import com.example.pagewiden.R;
 
 public class CustomListViewActivScenarioAdapter extends ArrayAdapter<Object> {
 	private Context context;

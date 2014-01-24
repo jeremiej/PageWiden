@@ -2,16 +2,6 @@ package com.accenture.cdi.widen.station.fragments;
 
 import java.util.ArrayList;
 
-import com.accenture.cdi.widen.station.ScenarioDetailsActivity;
-import com.accenture.cdi.widen.station.adapters.CustomListViewScenarioBlockAdapter;
-import com.accenture.cdi.widen.station.model.MyObject;
-import com.accenture.cdi.widen.station.model.MyObjectParam;
-import com.accenture.cdi.widen.station.model.Scenario;
-import com.accenture.cdi.widen.station.model.ScenarioBlock;
-import com.accenture.cdi.widen.station.model.ScenarioList;
-import com.accenture.cdi.widen.station.model.ScenarioListDownloadable;
-import com.example.pagewiden.R;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -23,6 +13,16 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.accenture.cdi.widen.station.R;
+import com.accenture.cdi.widen.station.ScenarioDetailsActivity;
+import com.accenture.cdi.widen.station.adapters.CustomListViewScenarioBlockAdapter;
+import com.accenture.cdi.widen.station.model.MyObject;
+import com.accenture.cdi.widen.station.model.MyObjectParam;
+import com.accenture.cdi.widen.station.model.Scenario;
+import com.accenture.cdi.widen.station.model.ScenarioBlock;
+import com.accenture.cdi.widen.station.model.ScenarioList;
+import com.accenture.cdi.widen.station.model.ScenarioListDownloadable;
 
 public class MonStoreDetailsFragment extends Fragment {
 

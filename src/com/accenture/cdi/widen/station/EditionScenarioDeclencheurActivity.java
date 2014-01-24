@@ -2,19 +2,6 @@ package com.accenture.cdi.widen.station;
 
 import java.util.ArrayList;
 
-import com.accenture.cdi.widen.station.adapters.CustomActionSpinnerAdapter;
-import com.accenture.cdi.widen.station.adapters.CustomObjectSpinnerAdapter;
-import com.accenture.cdi.widen.station.adapters.CustomParamSpinnerAdapter;
-import com.accenture.cdi.widen.station.model.MyObject;
-import com.accenture.cdi.widen.station.model.MyObjectAction;
-import com.accenture.cdi.widen.station.model.MyObjectList;
-import com.accenture.cdi.widen.station.model.MyObjectParam;
-import com.accenture.cdi.widen.station.model.NewScenario;
-import com.accenture.cdi.widen.station.model.Scenario;
-import com.accenture.cdi.widen.station.model.ScenarioBlock;
-import com.accenture.cdi.widen.station.model.ScenarioList;
-import com.example.pagewiden.R;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -30,6 +17,18 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.Spinner;
+
+import com.accenture.cdi.widen.station.adapters.CustomActionSpinnerAdapter;
+import com.accenture.cdi.widen.station.adapters.CustomObjectSpinnerAdapter;
+import com.accenture.cdi.widen.station.adapters.CustomParamSpinnerAdapter;
+import com.accenture.cdi.widen.station.model.MyObject;
+import com.accenture.cdi.widen.station.model.MyObjectAction;
+import com.accenture.cdi.widen.station.model.MyObjectList;
+import com.accenture.cdi.widen.station.model.MyObjectParam;
+import com.accenture.cdi.widen.station.model.NewScenario;
+import com.accenture.cdi.widen.station.model.Scenario;
+import com.accenture.cdi.widen.station.model.ScenarioBlock;
+import com.accenture.cdi.widen.station.model.ScenarioList;
 
 public class EditionScenarioDeclencheurActivity extends Activity {
 	

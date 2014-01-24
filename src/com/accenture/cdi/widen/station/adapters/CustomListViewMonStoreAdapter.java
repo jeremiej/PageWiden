@@ -2,10 +2,6 @@ package com.accenture.cdi.widen.station.adapters;
 
 import java.util.ArrayList;
 
-import com.accenture.cdi.widen.station.model.Scenario;
-import com.accenture.cdi.widen.station.model.ScenarioList;
-import com.example.pagewiden.R;
-
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -15,6 +11,10 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.accenture.cdi.widen.station.R;
+import com.accenture.cdi.widen.station.model.Scenario;
+import com.accenture.cdi.widen.station.model.ScenarioList;
 
 public class CustomListViewMonStoreAdapter extends ArrayAdapter<Object> {
 	private Context context;

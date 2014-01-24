@@ -1,7 +1,5 @@
 package com.accenture.cdi.widen.station.fragments;
 
-import com.example.pagewiden.R;
-
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,6 +10,8 @@ import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.LinearLayout;
 import android.widget.ToggleButton;
+
+import com.accenture.cdi.widen.station.R;
 
 public class MaSpherePorteFragment extends Fragment {
 	View v;

@@ -2,12 +2,6 @@ package com.accenture.cdi.widen.station;
 
 import java.util.ArrayList;
 
-import com.accenture.cdi.widen.station.adapters.CustomListViewScenarioBlockAdapter;
-import com.accenture.cdi.widen.station.model.Scenario;
-import com.accenture.cdi.widen.station.model.ScenarioList;
-import com.accenture.cdi.widen.station.model.User;
-import com.example.pagewiden.R;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -26,6 +20,11 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Switch;
 import android.widget.TextView;
+
+import com.accenture.cdi.widen.station.adapters.CustomListViewScenarioBlockAdapter;
+import com.accenture.cdi.widen.station.model.Scenario;
+import com.accenture.cdi.widen.station.model.ScenarioList;
+import com.accenture.cdi.widen.station.model.User;
 
 public class ScenarioDetailsActivity extends Activity implements CompoundButton.OnCheckedChangeListener{
 

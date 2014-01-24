@@ -4,10 +4,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-
-import com.accenture.cdi.widen.station.utils.ServiceHandler;
-import com.example.pagewiden.R;
-
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -16,6 +12,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.accenture.cdi.widen.station.R;
+import com.accenture.cdi.widen.station.utils.ServiceHandler;
 
 public class MaSphereBarometreFragment extends Fragment {
 

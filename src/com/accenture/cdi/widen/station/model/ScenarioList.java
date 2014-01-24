@@ -2,12 +2,12 @@ package com.accenture.cdi.widen.station.model;
 
 import java.util.ArrayList;
 
-import com.example.pagewiden.R;
-
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+
+import com.accenture.cdi.widen.station.R;
 
 public class ScenarioList {
 	private Context mAppContext;

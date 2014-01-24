@@ -11,9 +11,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.accenture.cdi.widen.station.R;
 import com.accenture.cdi.widen.station.model.MyObject;
 import com.accenture.cdi.widen.station.model.MyObjectList;
-import com.example.pagewiden.R;
 
 public class MaSphereContainerFragment extends Fragment {
 	

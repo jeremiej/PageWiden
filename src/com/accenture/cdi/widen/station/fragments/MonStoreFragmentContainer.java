@@ -12,9 +12,9 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
+import com.accenture.cdi.widen.station.R;
 import com.accenture.cdi.widen.station.adapters.CustomListViewMonStoreAdapter;
 import com.accenture.cdi.widen.station.model.ScenarioListDownloadable;
-import com.example.pagewiden.R;
 
 public class MonStoreFragmentContainer extends Fragment {
 

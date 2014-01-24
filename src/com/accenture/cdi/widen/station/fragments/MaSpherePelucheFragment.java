@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.accenture.cdi.widen.station.MainActivity;
+import com.accenture.cdi.widen.station.R;
 import com.accenture.cdi.widen.station.model.MyObject;
 import com.accenture.cdi.widen.station.model.MyObjectAction;
 import com.accenture.cdi.widen.station.model.MyObjectParam;
@@ -20,7 +21,6 @@ import com.accenture.cdi.widen.station.model.Scenario;
 import com.accenture.cdi.widen.station.model.ScenarioBlock;
 import com.accenture.cdi.widen.station.model.ScenarioList;
 import com.accenture.cdi.widen.station.model.ScenarioListDownloadable;
-import com.example.pagewiden.R;
 
 public class MaSpherePelucheFragment extends Fragment {
 	View v;

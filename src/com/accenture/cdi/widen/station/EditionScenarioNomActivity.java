@@ -14,7 +14,6 @@ import android.widget.EditText;
 import com.accenture.cdi.widen.station.model.NewScenario;
 import com.accenture.cdi.widen.station.model.Scenario;
 import com.accenture.cdi.widen.station.model.ScenarioList;
-import com.example.pagewiden.R;
 
 public class EditionScenarioNomActivity extends Activity {
 

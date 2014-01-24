@@ -26,7 +26,6 @@ import com.accenture.cdi.widen.station.fragments.MaSphereContainerFragment;
 import com.accenture.cdi.widen.station.fragments.MonStoreFragmentContainer;
 import com.accenture.cdi.widen.station.fragments.MonStudioFragmentContainer;
 import com.accenture.cdi.widen.station.model.User;
-import com.example.pagewiden.R;
 
 public class MainActivity extends FragmentActivity implements
 		ActionBar.TabListener {

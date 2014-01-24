@@ -10,10 +10,10 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.accenture.cdi.widen.station.R;
 import com.accenture.cdi.widen.station.adapters.CustomListViewActivScenarioAdapter;
 import com.accenture.cdi.widen.station.model.Scenario;
 import com.accenture.cdi.widen.station.model.ScenarioList;
-import com.example.pagewiden.R;
 
 public class MaSphereListScenarioFragment extends Fragment {
 	View v;

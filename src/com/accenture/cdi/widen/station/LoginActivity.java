@@ -11,7 +11,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.accenture.cdi.widen.station.model.User;
-import com.example.pagewiden.R;
 
 public class LoginActivity extends Activity {
 	

@@ -2,16 +2,16 @@ package com.accenture.cdi.widen.station.adapters;
 
 import java.util.ArrayList;
 
-import com.accenture.cdi.widen.station.model.MyObjectAction;
-import com.accenture.cdi.widen.station.model.MyObjectParam;
-import com.example.pagewiden.R;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+
+import com.accenture.cdi.widen.station.R;
+import com.accenture.cdi.widen.station.model.MyObjectAction;
+import com.accenture.cdi.widen.station.model.MyObjectParam;
 
 public class CustomListViewMonStoreActionAdapter extends ArrayAdapter<Object> {
 	private Context context;

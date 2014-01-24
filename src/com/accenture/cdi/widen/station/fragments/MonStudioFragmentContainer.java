@@ -2,12 +2,6 @@ package com.accenture.cdi.widen.station.fragments;
 
 import java.util.ArrayList;
 
-import com.accenture.cdi.widen.station.EditionScenarioNomActivity;
-import com.accenture.cdi.widen.station.ScenarioDetailsActivity;
-import com.accenture.cdi.widen.station.adapters.CustomGridViewAdapter;
-import com.accenture.cdi.widen.station.model.ScenarioList;
-import com.example.pagewiden.R;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,6 +12,12 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
+
+import com.accenture.cdi.widen.station.EditionScenarioNomActivity;
+import com.accenture.cdi.widen.station.R;
+import com.accenture.cdi.widen.station.ScenarioDetailsActivity;
+import com.accenture.cdi.widen.station.adapters.CustomGridViewAdapter;
+import com.accenture.cdi.widen.station.model.ScenarioList;
 
 public class MonStudioFragmentContainer extends Fragment {
 	
