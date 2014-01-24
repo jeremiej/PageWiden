@@ -23,7 +23,7 @@
 
     <fragment
         android:id="@+id/myobject_list"
-        android:name="com.example.pagewiden.MyObjectListFragment"
+        android:name="com.accenture.cdi.widen.station.MyObjectListFragment"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"

@@ -16,12 +16,12 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.example.pagewiden.LoginActivity"
+            android:name="com.accenture.cdi.widen.station.LoginActivity"
             android:label="@string/app_name"
             android:screenOrientation="landscape" >
         </activity>
         <activity
-            android:name="com.example.pagewiden.MainActivity"
+            android:name="com.accenture.cdi.widen.station.MainActivity"
             android:label="@string/title_activity_main"
             android:screenOrientation="landscape" >
             <intent-filter>
@@ -30,33 +30,33 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.pagewiden.ScenarioDetailsActivity"
+            android:name="com.accenture.cdi.widen.station.ScenarioDetailsActivity"
             android:label="@string/title_activity_scenario_details"
             android:screenOrientation="landscape" >
         </activity>
         <activity
-            android:name="com.example.pagewiden.EditionScenarioNomActivity"
+            android:name="com.accenture.cdi.widen.station.EditionScenarioNomActivity"
             android:label="@string/title_activity_edition_scenario_nom"
             android:screenOrientation="landscape" >
         </activity>
         <activity
-            android:name="com.example.pagewiden.EditionScenarioDeclencheurActivity"
+            android:name="com.accenture.cdi.widen.station.EditionScenarioDeclencheurActivity"
             android:label="@string/title_activity_edition_scenario_declencheur"
             android:screenOrientation="landscape" >
         </activity>
         <activity
-            android:name="com.example.pagewiden.EditionScenarioBlockActivity"
+            android:name="com.accenture.cdi.widen.station.EditionScenarioBlockActivity"
             android:label="@string/title_activity_edition_scenario_block"
             android:screenOrientation="landscape" >
         </activity>
         <activity
-            android:name="com.example.pagewiden.MyObjectListActivity"
+            android:name="com.accenture.cdi.widen.station.MyObjectListActivity"
             android:label="@string/title_myobject_list" >
         </activity>
         <activity
-            android:name="com.example.pagewiden.MyObjectDetailActivity"
+            android:name="com.accenture.cdi.widen.station.MyObjectDetailActivity"
             android:label="@string/title_myobject_detail"
-            android:parentActivityName=".MyObjectListActivity" >
+            android:parentActivityName="com.accenture.cdi.widen.station.MyObjectListActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MyObjectListActivity" />
