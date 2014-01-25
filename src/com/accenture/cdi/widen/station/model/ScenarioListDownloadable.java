@@ -133,6 +133,7 @@ public class ScenarioListDownloadable {
 		pHorloge2.setLabel("07h");
 		
 		scenarioDeclencheur2.setMyObject(oHorloge2);
+		scenarioDeclencheur2.setMyObjectAction(aHorloge);
 		scenarioDeclencheur2.setMyObjectParam(pHorloge2);
 		
 		scenario2.setDeclencheur(scenarioDeclencheur2);
