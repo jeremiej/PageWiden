@@ -20,13 +20,13 @@ public class CustomGridViewAdapter extends ArrayAdapter<Object> {
 
     private Context context;
     int layoutResourceId;
-    ArrayList<Object> data = new ArrayList<Object>();
+    ArrayList<Object> data;
 
     public CustomGridViewAdapter(Context context, int layoutResourceId, ArrayList<Object> data) {
     	super(context, layoutResourceId, data);
     	this.layoutResourceId = layoutResourceId;
     	this.context = context;
-    	this.data = data;
+    	this.data = ScenarioList.get(context).getScenarioArray();
     }
 
     public int getCount() {
@@ -47,7 +47,7 @@ public class CustomGridViewAdapter extends ArrayAdapter<Object> {
 		View row = convertView;
 		RecordHolder holder = null;
 		
-		Scenario scenario = (Scenario)data.get(position);
+		Scenario scenario = (Scenario) data.get(position);
 
 		if (row == null) {
 			LayoutInflater inflater = LayoutInflater.from(context);
@@ -55,29 +55,35 @@ public class CustomGridViewAdapter extends ArrayAdapter<Object> {
 			
 			holder = new RecordHolder();
 			ScenarioList scenarioList = ScenarioList.get(context);
-			if(scenarioList.getSize()-1==position){
-				holder.scenarioTitle = (TextView) row.findViewById(R.id.scenario_title);
-				holder.scenarioIcon = (ImageView) row.findViewById(R.id.scenario_icon);
+
+			holder.scenarioTitle = (TextView) row.findViewById(R.id.scenario_title);
+			holder.scenarioIcon = (ImageView) row.findViewById(R.id.scenario_icon);
+			holder.scenarioDescription = (TextView) row.findViewById(R.id.scenario_description);
+			holder.scenarioActivite = (TextView) row.findViewById(R.id.scenario_activite);
+			holder.scenarioIndicateur = (ImageView) row.findViewById(R.id.scenario_indicateur);
+
+			if (scenarioList.getSize() - 1 == position){
+				holder.scenarioTitle.setPadding(0, 0, 0, 0);
+				holder.scenarioTitle.setAlpha(0.0f);
+
 				holder.scenarioIcon.setAlpha(0.45f);
 				holder.scenarioIcon.setPadding(180, 30, 0, 10);
-				holder.scenarioDescription = (TextView) row.findViewById(R.id.scenario_description);
+
 				holder.scenarioDescription.setPadding(90, 0, 0, 10);
 				holder.scenarioDescription.setTextSize(25);
 				holder.scenarioDescription.setTextColor(Color.parseColor("#7d8083"));
 				holder.scenarioDescription.setAlpha(0.45f);
-				holder.scenarioActivite = (TextView) row.findViewById(R.id.scenario_activite);
-				holder.scenarioIndicateur = (ImageView) row.findViewById(R.id.scenario_indicateur);
-			}else{
-				holder.scenarioTitle = (TextView) row.findViewById(R.id.scenario_title);
+			} else {
 				holder.scenarioTitle.setPadding(10, 0, 10, 0);
 				holder.scenarioTitle.setBackgroundColor(Color.parseColor("#d2d2d2"));
-				holder.scenarioIcon = (ImageView) row.findViewById(R.id.scenario_icon);
+
+				holder.scenarioIcon.setAlpha(1.0f);
 				holder.scenarioIcon.setPadding(10, 10, 10, 0);
-				holder.scenarioDescription = (TextView) row.findViewById(R.id.scenario_description);
+
 				holder.scenarioDescription.setPadding(10, 10, 10, 10);
-				holder.scenarioActivite = (TextView) row.findViewById(R.id.scenario_activite);
+
 				holder.scenarioActivite.setPadding(0, 0, 7, 10);
-				holder.scenarioIndicateur = (ImageView) row.findViewById(R.id.scenario_indicateur);
+
 				holder.scenarioIndicateur.setPadding(0, 0, 10, 11);
 			}
 			row.setTag(holder);

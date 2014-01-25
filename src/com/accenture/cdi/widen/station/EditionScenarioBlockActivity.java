@@ -71,21 +71,22 @@ public class EditionScenarioBlockActivity extends Activity {
 
 		Button validationButton = (Button) findViewById(R.id.scenario_edit_validation);
 		validationButton.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				mScenarioList = ScenarioList.get(getApplicationContext());
-				
+
+				MyObject selectedObject = (MyObject) mSpinnerObject.getSelectedItem();
+				MyObjectAction selectedAction = (MyObjectAction) mSpinnerAction.getSelectedItem();
+				MyObjectParam selectedParam = (MyObjectParam) mSpinnerParam.getSelectedItem();
+
 				if (editMode != null) {
+
 					Scenario currentScenario = null;
 					ArrayList<Object> scenarioArray = mScenarioList.getScenarioArray();
 					currentScenario = (Scenario) scenarioArray.get(scenarioNb);
-					
-					MyObject selectedObject = (MyObject)mSpinnerObject.getSelectedItem();
-					MyObjectAction selectedAction = (MyObjectAction)mSpinnerAction.getSelectedItem();
-					MyObjectParam selectedParam = (MyObjectParam)mSpinnerParam.getSelectedItem();
 													
-					if(editMode.equals("editBlock")){
+					if (editMode.equals("editBlock")){
 						ArrayList<Object> blockArray = currentScenario.getBlocks();
 						ScenarioBlock currentBlock = (ScenarioBlock)blockArray.get(blockNb);
 						currentBlock.setMyObject(selectedObject);
@@ -113,9 +114,7 @@ public class EditionScenarioBlockActivity extends Activity {
 
 				} else {
 					mNewScenario = NewScenario.get(getApplicationContext());
-					MyObject selectedObject = (MyObject)mSpinnerObject.getSelectedItem();
-					MyObjectAction selectedAction = (MyObjectAction)mSpinnerAction.getSelectedItem();
-					MyObjectParam selectedParam = (MyObjectParam)mSpinnerParam.getSelectedItem();
+
 					ScenarioBlock blockNew = new ScenarioBlock();
 					blockNew.setMyObject(selectedObject);
 					blockNew.setMyObjectAction(selectedAction);

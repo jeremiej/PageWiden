@@ -98,7 +98,12 @@ public class MyObjectList {
 		MyObjectAction aCafetiere2 = new MyObjectAction();
 		aCafetiere2.setId(2);
 		aCafetiere2.setLabel("Purger");
-		
+
+		MyObjectParam pCafetiere3 = new MyObjectParam();
+		pCafetiere3.setId(1);
+		pCafetiere3.setLabel("");
+		aCafetiere2.addParam(pCafetiere3);
+
 		oCafetiere.addAction(aCafetiere2);
 		mMyObjectArray.add(oCafetiere);
 		
@@ -259,11 +264,11 @@ public class MyObjectList {
 		
 		MyObjectAction aPeluche2 = new MyObjectAction();
 		aPeluche2.setId(2);
-		aPeluche2.setLabel("Envoyer");
+		aPeluche2.setLabel("Lire");
 		
 		MyObjectParam pPeluche2 = new MyObjectParam();
 		pPeluche2.setId(1);
-		pPeluche2.setLabel("Vidéo à tablette");
+		pPeluche2.setLabel("Livre");
 		aPeluche2.addParam(pPeluche2);		
 		
 		oPeluche.addAction(aPeluche2);

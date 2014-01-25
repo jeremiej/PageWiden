@@ -57,11 +57,17 @@ public class MonStudioFragmentViewAllScenarios extends Fragment {
 	
 	@Override
 	public void onResume() {
-		ScenarioList scenarioList = ScenarioList.get(getActivity());
-		gridArray = scenarioList.getScenarioArray();
-		customGridAdapter = new CustomGridViewAdapter(getActivity(), R.layout.studio_gridrow_layout, gridArray);
-		gridView.setAdapter(customGridAdapter);
+		refreshScenarioGrid();
 		super.onResume();
+	}
+
+	public void refreshScenarioGrid() {
+		if (isResumed()) {
+			ScenarioList scenarioList = ScenarioList.get(getActivity());
+			gridArray = scenarioList.getScenarioArray();
+			customGridAdapter = new CustomGridViewAdapter(getActivity(), R.layout.studio_gridrow_layout, gridArray);
+			gridView.setAdapter(customGridAdapter);
+		}
 	}
 
 }

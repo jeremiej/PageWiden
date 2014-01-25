@@ -42,6 +42,9 @@ public class MainActivity extends Activity implements
     private EventReader<TeddySensor> eventReaderTeddyHere = null;
 
 	MaSphereContainerFragment maSphere;
+	MonStudioFragmentContainer monStudioContainer;
+	MonStudioFragmentViewAllScenarios monStudioViewAllScenarios;
+	int targetTab;
 
 	/**
 	 * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -57,8 +60,7 @@ public class MainActivity extends Activity implements
 	 * The {@link ViewPager} that will host the section contents.
 	 */
 	ViewPager mViewPager;
-	
-	int targetTab;
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -162,7 +164,8 @@ public class MainActivity extends Activity implements
 		        	maSphere = (MaSphereContainerFragment) Fragment.instantiate(getApplicationContext(), MaSphereContainerFragment.class.getName());
 		        	return maSphere;
 		        case 1:
-		        	return Fragment.instantiate(getApplicationContext(), MonStudioFragmentContainer.class.getName());
+		        	monStudioContainer = (MonStudioFragmentContainer) Fragment.instantiate(getApplicationContext(), MonStudioFragmentContainer.class.getName());
+		        	return monStudioContainer;
 		        case 2:
 		        	return Fragment.instantiate(getApplicationContext(), MonStoreFragmentContainer.class.getName());
 	        }
@@ -257,11 +260,11 @@ public class MainActivity extends Activity implements
 
 	// Manage fragments in "Mon Studio"
 	public void monStudioViewAllScenarios() {
-		MonStudioFragmentViewAllScenarios fragment = new MonStudioFragmentViewAllScenarios();
+		monStudioViewAllScenarios = new MonStudioFragmentViewAllScenarios();
 		FragmentTransaction transaction = getFragmentManager().beginTransaction();
-		transaction.replace(R.id.mon_studio_container, fragment);
+		transaction.replace(R.id.mon_studio_container, monStudioViewAllScenarios);
 		transaction.commit();
-		maSphere.refreshScenarioListFragment();
+		refreshMaSphereDisplayedScenarios();
 	}
 
 	public void monStudioViewOneScenarioDetails(int scenarioPosition) {
@@ -286,7 +289,7 @@ public class MainActivity extends Activity implements
 		FragmentTransaction transaction = getFragmentManager().beginTransaction();
 		transaction.replace(R.id.mon_store_container, fragment);
 		transaction.commit();
-		maSphere.refreshScenarioListFragment();
+		refreshMaSphereDisplayedScenarios();
 	}
 
 	public void monStoreViewOneScenarioDetails(int scenarioPosition) {
@@ -299,6 +302,16 @@ public class MainActivity extends Activity implements
 		transaction.commit();
 	}
 
+	public void refreshMaSphereDisplayedScenarios() {
+		maSphere.refreshScenarioListFragment();
+	}
+
+	public void refreshMonStudioDisplayedScenarios() {
+		if (monStudioViewAllScenarios != null) {
+			monStudioViewAllScenarios.refreshScenarioGrid();
+		}
+	}
+
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
@@ -308,10 +321,12 @@ public class MainActivity extends Activity implements
 		case RESULT_OK:
 			switch (requestCode) {
 			case START_ACTIVITY_CREATE_SCENARIO:
+				refreshMonStudioDisplayedScenarios();
 				position = data.getIntExtra("position", -1);
 				monStudioViewOneScenarioDetails(position);
 				break;
 			case START_ACTIVITY_EDIT_SCENARIO:
+				refreshMonStudioDisplayedScenarios();
 				position = data.getIntExtra("position", -1);
 				monStudioViewOneScenarioDetails(position);
 				break;

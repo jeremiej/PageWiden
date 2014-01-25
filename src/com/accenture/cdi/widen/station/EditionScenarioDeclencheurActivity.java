@@ -126,9 +126,9 @@ public class EditionScenarioDeclencheurActivity extends Activity {
 				    	Bitmap indicateurBleu = BitmapFactory.decodeResource(getApplicationContext().getResources(), R.drawable.indicateur_bleu);
 				    	mNewScenario.setScenarioIndicateur(indicateurBleu);
 				    	
-						MyObject selectedObject = (MyObject)mSpinnerObject.getSelectedItem();
-						MyObjectAction selectedAction = (MyObjectAction)mSpinnerAction.getSelectedItem();
-						MyObjectParam selectedParam = (MyObjectParam)mSpinnerParam.getSelectedItem();
+						MyObject selectedObject = (MyObject) mSpinnerObject.getSelectedItem();
+						MyObjectAction selectedAction = (MyObjectAction) mSpinnerAction.getSelectedItem();
+						MyObjectParam selectedParam = (MyObjectParam) mSpinnerParam.getSelectedItem();
 	
 						ScenarioBlock blockDeclencheur = new ScenarioBlock();
 						blockDeclencheur.setMyObject(selectedObject);
@@ -152,10 +152,16 @@ public class EditionScenarioDeclencheurActivity extends Activity {
 			currentScenario = (Scenario)scenarioArray.get(scenarioNb);
 			ScenarioBlock declencheurBlock = new ScenarioBlock();
 			declencheurBlock = currentScenario.getDeclencheur();
-			
-			positionObject = declencheurBlock.getMyObject().getId()-1;
-			positionAction = declencheurBlock.getMyObjectAction().getId()-1;
-			positionParam = declencheurBlock.getMyObjectParam().getId()-1;
+
+			if (declencheurBlock == null) {
+				positionObject = 0;
+				positionAction = 0;
+				positionParam = 0;
+			} else {
+				positionObject = declencheurBlock.getMyObject().getId()-1;
+				positionAction = declencheurBlock.getMyObjectAction().getId()-1;
+				positionParam = declencheurBlock.getMyObjectParam().getId()-1;
+			}
 					
 			mSpinnerObject.setSelection(positionObject);
 			mSpinnerAction.setSelection(positionAction);

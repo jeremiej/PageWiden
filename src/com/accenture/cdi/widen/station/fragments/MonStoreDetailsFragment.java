@@ -58,18 +58,17 @@ public class MonStoreDetailsFragment extends Fragment {
 		tvDeclencheurParam.setText(declencheurParam.getLabel());
 		
 		ListView lvBlocks = (ListView)v.findViewById(R.id.scenario_blocks_listview);
-        CustomListViewScenarioBlockAdapter customBlockAdapter = new CustomListViewScenarioBlockAdapter(inflater.getContext(), 
-        		R.layout.list_scenario_blocks, scenario.getBlocks());
+        CustomListViewScenarioBlockAdapter customBlockAdapter = new CustomListViewScenarioBlockAdapter(inflater.getContext(), R.layout.list_scenario_blocks, scenario.getBlocks());
         lvBlocks.setAdapter(customBlockAdapter);
         lvBlocks.setClickable(false);
         
         final Button buttonDownload = (Button)v.findViewById(R.id.download_button);
         
         final ScenarioList scenarioList = ScenarioList.get(inflater.getContext());
-        if(scenarioList.isDownloaded(scenario.getScenarioTitle())){
+        if (scenarioList.isDownloaded(scenario.getScenarioTitle())){
         	buttonDownload.setEnabled(false);
         	buttonDownload.setClickable(false);
-        }else{
+        } else {
         	buttonDownload.setOnClickListener(new OnClickListener() {
 				
 				@Override
@@ -79,7 +78,8 @@ public class MonStoreDetailsFragment extends Fragment {
 					scenarioList.addButtonAddScenario();	
 					buttonDownload.setEnabled(false);
 		        	buttonDownload.setClickable(false);
-		        	
+
+		        	((MainActivity) getActivity()).refreshMonStudioDisplayedScenarios();
 		        	((MainActivity) getActivity()).monStoreViewOneScenarioDetails(scenarioList.getSize() - 2);
 				}
 			});
