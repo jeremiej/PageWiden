@@ -12,7 +12,7 @@
     <string name="title_section3">Mon store</string>
     <string name="user_name_action">user_name</string>
     <string name="title_activity_scenario_details">Détails du scénario</string>
-    <string name="scenario_declencheur_titre">Déclenchement du scénario</string>
+    <string name="scenario_declencheur_titre">Déclencheur</string>
     <string name="trigger_object_title">Objet</string>
     <string name="trigger_param_title">Paramètres</string>
     <string name="scenario_actions_titre">Scénario</string>

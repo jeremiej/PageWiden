@@ -6,75 +6,97 @@
     android:paddingBottom="20dp">
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingTop="10dp" >
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_gravity="center_vertical"
+        android:orientation="horizontal">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingTop="2sp"
-            android:text="Objet: "
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
+            android:text="Objet :"
             android:textColor="#8c8c8c"
             android:textSize="25sp" />
+	    <LinearLayout
+	        android:layout_width="0dp"
+	        android:layout_height="match_parent"
+	        android:layout_weight="3"
+	        android:layout_gravity="center_vertical"
+	        android:orientation="horizontal" >
 
-        <TextView
-            android:id="@+id/scenario_obect_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="93sp"
-            android:paddingTop="2sp"
-            android:textColor="#8c8c8c"
-            android:textSize="20sp" />
-
-        <ImageView
-            android:id="@+id/scenario_object_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="10sp" />
+	        <TextView
+	            android:id="@+id/scenario_obect_name"
+	            android:layout_width="wrap_content"
+	            android:layout_height="match_parent"
+	            android:layout_gravity="left|center_vertical"
+	            android:gravity="center_vertical"
+	            android:textColor="#8c8c8c"
+	            android:textSize="20sp" />
+	
+	        <ImageView
+	            android:id="@+id/scenario_object_icon"
+	            android:layout_width="wrap_content"
+	            android:layout_height="match_parent"
+	            android:layout_gravity="left|center_vertical"
+	            android:paddingLeft="10sp" />
+	     </LinearLayout>
         
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:orientation="horizontal" >
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Action: "
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="center_vertical"
+            android:layout_gravity="center_vertical"
+            android:text="Action :"
             android:textColor="#8c8c8c"
             android:textSize="25sp" />
 
         <TextView
             android:id="@+id/scenario_object_action"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="80sp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+			android:layout_gravity="left|center_vertical"
+	        android:gravity="center_vertical"
             android:textColor="#8c8c8c"
             android:textSize="20sp" />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingTop="5sp" >
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal" >
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Paramètres: "
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="center_vertical"
+            android:layout_gravity="center_vertical"
+            android:text="Paramètres :"
             android:textColor="#8c8c8c"
             android:textSize="25sp" />
 
         <TextView
             android:id="@+id/scenario_object_param"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="20sp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+			android:layout_gravity="left|center_vertical"
+	        android:gravity="center_vertical"
             android:textColor="#8c8c8c"
             android:textSize="20sp" />
     </LinearLayout>
