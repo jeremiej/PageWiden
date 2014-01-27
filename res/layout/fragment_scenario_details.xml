@@ -141,6 +141,7 @@
 	                android:layout_height="match_parent"
 	                android:layout_weight="1"
 	                android:paddingLeft="20sp"
+	                android:gravity="center_vertical|left"
 	                android:layout_gravity="center_vertical|left"
 	                android:text="@string/scenario_declencheur_titre"
 	                android:textColor="#5f5f5f"
@@ -159,9 +160,10 @@
             <TextView
                 android:id="@+id/scenario_block_object_title"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="42sp"
+                android:gravity="left|center_vertical"
+                android:layout_gravity="left|center_vertical"
                 android:paddingLeft="20sp"
-                android:paddingTop="10sp"
                 android:text="@string/trigger_object_title"
                 android:textColor="#8c8c8c"
                 android:textSize="25sp" >
@@ -169,10 +171,11 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:paddingLeft="20sp"
-                android:paddingTop="10sp" >
+                android:layout_height="42sp"
+                android:gravity="left|center_vertical"
+                android:layout_gravity="left|center_vertical"
+                android:paddingLeft="20sp" >
                 <TextView
                     android:id="@+id/trigger_object_name"
                     android:layout_width="wrap_content"
@@ -192,9 +195,10 @@
             <TextView
                 android:id="@+id/scenario_block_param_title"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="42sp"
+                android:gravity="left|center_vertical"
+                android:layout_gravity="left|center_vertical"
                 android:paddingLeft="20sp"
-                android:paddingTop="10sp"
                 android:text="@string/trigger_param_title"
                 android:textColor="#8c8c8c"
                 android:textSize="25sp" >
@@ -203,10 +207,10 @@
             <TextView
                 android:id="@+id/trigger_param"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="42sp"
+                android:gravity="left|center_vertical"
+                android:layout_gravity="left|center_vertical"
                 android:paddingLeft="30sp"
-                android:paddingTop="10sp"
-                android:paddingBottom="10sp"
                 android:textColor="#8c8c8c"
                 android:textSize="20sp" >
             </TextView>
@@ -251,8 +255,8 @@
 		                android:gravity="center_vertical"
 		        		android:background="@color/button_Add"
 		                android:layout_marginRight="10sp"
-		                android:paddingLeft="20sp"
-		                android:paddingRight="20sp"
+		                android:paddingLeft="60sp"
+		                android:paddingRight="60sp"
 		                android:paddingTop="10sp"
 		                android:paddingBottom="10sp"
 		                android:src="@drawable/ic_action_new" />
