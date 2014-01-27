@@ -36,7 +36,9 @@ public class MaSphereWebcamFragment extends Fragment {
 	}
 
 	private void startPlaying() {
-		this.videoView.start();
+		if (this.videoView != null) {
+			this.videoView.start();
+		}
 	}
 
 	@Override
@@ -46,4 +48,5 @@ public class MaSphereWebcamFragment extends Fragment {
 		}
 		super.onResume();
 	}
+
 }

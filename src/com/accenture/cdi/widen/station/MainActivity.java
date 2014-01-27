@@ -41,8 +41,9 @@ public class MainActivity extends Activity implements
     private WidenQeoConnectionListener wQCL = null;
     private EventReader<TeddySensor> eventReaderTeddyHere = null;
 
-	MaSphereContainerFragment maSphere;
+	MaSphereContainerFragment maSphereContainer;
 	MonStudioFragmentContainer monStudioContainer;
+	MonStoreFragmentContainer monStoreContainer;
 	MonStudioFragmentViewAllScenarios monStudioViewAllScenarios;
 	int targetTab;
 
@@ -161,13 +162,20 @@ public class MainActivity extends Activity implements
 		public Fragment getItem(int position) {
 	        switch (position) {
 		        case 0:
-		        	maSphere = (MaSphereContainerFragment) Fragment.instantiate(getApplicationContext(), MaSphereContainerFragment.class.getName());
-		        	return maSphere;
+		        	if (maSphereContainer == null) {
+		        		maSphereContainer = (MaSphereContainerFragment) Fragment.instantiate(getApplicationContext(), MaSphereContainerFragment.class.getName());
+		        	}
+		        	return maSphereContainer;
 		        case 1:
-		        	monStudioContainer = (MonStudioFragmentContainer) Fragment.instantiate(getApplicationContext(), MonStudioFragmentContainer.class.getName());
+		        	if (monStudioContainer == null) {
+		        		monStudioContainer = (MonStudioFragmentContainer) Fragment.instantiate(getApplicationContext(), MonStudioFragmentContainer.class.getName());
+		        	}
 		        	return monStudioContainer;
 		        case 2:
-		        	return Fragment.instantiate(getApplicationContext(), MonStoreFragmentContainer.class.getName());
+		        	if (monStoreContainer == null) {
+		        		monStoreContainer =  (MonStoreFragmentContainer) Fragment.instantiate(getApplicationContext(), MonStoreFragmentContainer.class.getName());
+		        	}
+		        	return monStoreContainer;
 	        }
 	        return null;
 		}
@@ -255,7 +263,7 @@ public class MainActivity extends Activity implements
 	}
 
 	private void onTeddyHere() {
-		maSphere.onTeddyHere();
+		maSphereContainer.onTeddyHere();
 	}
 
 	// Manage fragments in "Mon Studio"
@@ -303,7 +311,9 @@ public class MainActivity extends Activity implements
 	}
 
 	public void refreshMaSphereDisplayedScenarios() {
-		maSphere.refreshScenarioListFragment();
+		if (maSphereContainer != null) {
+			maSphereContainer.refreshScenarioListFragment();
+		}
 	}
 
 	public void refreshMonStudioDisplayedScenarios() {
