@@ -18,6 +18,8 @@ import com.accenture.cdi.widen.station.utils.ServiceHandler;
 
 public class MaSphereBarometreFragment extends Fragment {
 
+	private static final String CH_URL_BAROMETER = "http://192.168.70.1:47995/device_op?apiVersion=2&cmd=getDevices";
+
 	String hydrometrie = null;
 	String temperature = null;
 	View v;
@@ -30,12 +32,12 @@ public class MaSphereBarometreFragment extends Fragment {
 	}
 	
 	private class GetJson extends AsyncTask<Void, Void, Void> {	
- 
-        @Override
+
+		@Override
         protected Void doInBackground(Void... arg0) {
             ServiceHandler sh = new ServiceHandler();
  
-            String url = "http://192.168.70.1:47995/device_op?apiVersion=2&cmd=getDevices";
+            String url = CH_URL_BAROMETER;
             String jsonStr = sh.makeServiceCall(url, ServiceHandler.GET);
  
             if (jsonStr != null) {

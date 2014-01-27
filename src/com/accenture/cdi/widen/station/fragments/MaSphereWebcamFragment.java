@@ -14,12 +14,15 @@ import com.accenture.cdi.widen.station.R;
 public class MaSphereWebcamFragment extends Fragment {
 
 	public static final String VIDEO_URL = "rtsp://192.168.70.177/img/media.sav";
+	public static final String VIDEO_URL_2 = "rtsp://media.smart-streaming.com/mytest/mp4:sample.mp4";
+
+	private VideoView videoView;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_ma_sphere_video, container, false);
 		
-		VideoView videoView = (VideoView)v.findViewById(R.id.video_stream);
+		videoView = (VideoView) v.findViewById(R.id.video_stream);
 		videoView.setMediaController(null);
 		videoView.setOnErrorListener(new MediaPlayer.OnErrorListener() {
 			
@@ -29,8 +32,18 @@ public class MaSphereWebcamFragment extends Fragment {
 			}
 		});
 		videoView.setVideoURI(Uri.parse(VIDEO_URL));
-		videoView.start();	
-				
 		return v;
+	}
+
+	private void startPlaying() {
+		this.videoView.start();
+	}
+
+	@Override
+	public void onResume() {
+		if (!this.videoView.isPlaying()) {
+			startPlaying();
+		}
+		super.onResume();
 	}
 }
