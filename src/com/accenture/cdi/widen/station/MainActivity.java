@@ -27,8 +27,8 @@ import com.accenture.cdi.widen.station.fragments.MonStoreFragmentContainer;
 import com.accenture.cdi.widen.station.fragments.MonStoreFragmentViewOneScenario;
 import com.accenture.cdi.widen.station.fragments.MonStoreViewAllDownloadableScenarios;
 import com.accenture.cdi.widen.station.fragments.MonStudioFragmentContainer;
-import com.accenture.cdi.widen.station.fragments.MonStudioFragmentViewOneScenario;
 import com.accenture.cdi.widen.station.fragments.MonStudioFragmentViewAllScenarios;
+import com.accenture.cdi.widen.station.fragments.MonStudioFragmentViewOneScenario;
 import com.accenture.cdi.widen.station.model.User;
 
 public class MainActivity extends Activity implements
