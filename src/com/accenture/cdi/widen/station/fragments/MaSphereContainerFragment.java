@@ -23,6 +23,7 @@ public class MaSphereContainerFragment extends Fragment {
 	private MaSpherePorteFragment mPorteFragment = null;
 	private MaSpherePelucheFragment mPelucheFragment = null;
 	private MaSphereListScenarioFragment mListScenarioFragment = null;
+	private MaSphereTvFragment mTvFragment = null;
 
 	// Qeo attributes
 	public static final int TOAST_ID_TEDDY_HERE = 0;
@@ -35,12 +36,17 @@ public class MaSphereContainerFragment extends Fragment {
 		this.mBarometreFragment = new MaSphereBarometreFragment();
 		this.mPorteFragment = new MaSpherePorteFragment();
 		this.mListScenarioFragment = new MaSphereListScenarioFragment();
+		this.mTvFragment = new MaSphereTvFragment();
 		
 		FragmentTransaction transaction = getFragmentManager().beginTransaction();		
 		transaction.add(R.id.webcam_container, this.mWebcamFragment);
 		transaction.add(R.id.barometre_container, this.mBarometreFragment);
 		transaction.add(R.id.porte_container, this.mPorteFragment);
 		transaction.add(R.id.scenario_list_container, this.mListScenarioFragment);
+    	Bundle argumentsTvRecipe = new Bundle();
+    	argumentsTvRecipe.putInt("newRecipe", 0);
+    	mTvFragment.setArguments(argumentsTvRecipe);
+		transaction.add(R.id.tv_container, this.mTvFragment);
 		
 		MyObjectList myObjectList = MyObjectList.get(getActivity());
 		ArrayList<Object> objectArray = myObjectList.getMyObjectArray();
@@ -54,7 +60,6 @@ public class MaSphereContainerFragment extends Fragment {
 		}
 	
 		transaction.commit();
-
 
 		return v;
 	}
@@ -96,8 +101,6 @@ public class MaSphereContainerFragment extends Fragment {
 		alertDialog.show();
 	}
 
-
-
 	public void onTeddyHere() {
 		MyObjectList myObjectList = MyObjectList.get(getActivity());
 		ArrayList<Object> objectArray = myObjectList.getMyObjectArray();
@@ -122,5 +125,16 @@ public class MaSphereContainerFragment extends Fragment {
 		if (this.mListScenarioFragment != null) {
 			this.mListScenarioFragment.refreshScenarioList();
 		}
+	}
+	
+	public void onTvRecipeHere(){
+    	Bundle arguments = new Bundle();
+    	arguments.putInt("newRecipe", 1);
+    	FragmentTransaction transaction = null;
+    	mTvFragment = new MaSphereTvFragment();
+    	mTvFragment.setArguments(arguments);
+    	transaction = getFragmentManager().beginTransaction();
+    	transaction.replace(R.id.tv_container, mTvFragment);
+		transaction.commit();
 	}
 }

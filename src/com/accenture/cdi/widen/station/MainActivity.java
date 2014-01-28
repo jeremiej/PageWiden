@@ -22,6 +22,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.accenture.cdi.widen.data.TeddySensor;
+import com.accenture.cdi.widen.data.TvRecipeSensor;
 import com.accenture.cdi.widen.station.fragments.MaSphereContainerFragment;
 import com.accenture.cdi.widen.station.fragments.MonStoreFragmentContainer;
 import com.accenture.cdi.widen.station.fragments.MonStoreFragmentViewOneScenario;
@@ -36,10 +37,12 @@ public class MainActivity extends Activity implements
 
 	public static final int START_ACTIVITY_CREATE_SCENARIO = 0;
 	public static final int START_ACTIVITY_EDIT_SCENARIO = 1;
+	public static final int START_ACTIVITY_SHOP_RECIPE = 2;
 	
     private QeoFactory qeo = null;
     private WidenQeoConnectionListener wQCL = null;
     private EventReader<TeddySensor> eventReaderTeddyHere = null;
+    private EventReader<TvRecipeSensor> eventReaderTvRecipeHere = null;
 
 	MaSphereContainerFragment maSphereContainer;
 	MonStudioFragmentContainer monStudioContainer;
@@ -212,6 +215,9 @@ public class MainActivity extends Activity implements
 		if (eventReaderTeddyHere != null) {
 			eventReaderTeddyHere.close();
        	}
+		if (eventReaderTvRecipeHere != null) {
+			eventReaderTvRecipeHere.close();
+       	}
         if (qeo != null) {
             qeo.close();
         }
@@ -228,6 +234,7 @@ public class MainActivity extends Activity implements
 	        // This is a good place to create readers and writers
 	        try {
 				eventReaderTeddyHere = qeo.createEventReader(TeddySensor.class, new EventListenerTeddyHere());
+				eventReaderTvRecipeHere = qeo.createEventReader(TvRecipeSensor.class, new EventListenerTvRecipeHere());
 				
 			} catch (QeoException e) {
 				e.printStackTrace();
@@ -264,6 +271,24 @@ public class MainActivity extends Activity implements
 
 	private void onTeddyHere() {
 		maSphereContainer.onTeddyHere();
+	}
+	
+	// State and Event listeners tv recipe
+	public class EventListenerTvRecipeHere implements EventReaderListener<TvRecipeSensor> {
+
+		@Override
+		public void onData(TvRecipeSensor tvRecipeHere) {
+			onTvRecipeHere();
+		}
+
+		@Override
+		public void onNoMoreData() {	
+		}
+
+	}
+
+	private void onTvRecipeHere() {
+		maSphereContainer.onTvRecipeHere();
 	}
 
 	// Manage fragments in "Mon Studio"

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#dddddd"
+    android:orientation="vertical" >
+        
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#d2d2d2"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="@string/tv_title"
+        android:textColor="#48bdec"
+        android:textSize="35sp" />
+    
+    <TextView
+        android:id="@+id/no_recipe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="@string/no_recipe"
+        android:textColor="#7d8083"
+        android:textSize="25sp" />
+
+    <LinearLayout
+        android:id="@+id/new_recipe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="@string/tv_new_recipe"
+            android:textColor="#7d8083"
+            android:textSize="25sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" 
+            android:paddingLeft="10dp"
+            android:paddingBottom="10dp">
+
+            <Button
+                android:id="@+id/show_recipe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="@string/tv_show_recipe"
+                android:textColor="#7d8083"
+                android:textSize="25sp" />
+
+            <Button
+                android:id="@+id/hide_recipe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="@string/tv_hide_recipe"
+                android:textColor="#7d8083"
+                android:textSize="25sp" />
+            
+        </LinearLayout>
+        
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/tv_recipe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp"
+            android:text="@string/tv_new_recipe_title"
+            android:textColor="#7d8083"
+            android:textSize="25sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="20dp"
+            android:text="2 belles tomates cœur de bœuf"
+            android:textColor="#d85142"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="20dp"
+            android:text="Piment d’espelette"
+            android:textColor="#7d8083"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="20dp"
+            android:text="Sel, poivre"
+            android:textColor="#7d8083"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="20dp"
+            android:text="1 feuille et demi de gélatine"
+            android:textColor="#7d8083"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="20dp"
+            android:text="6 mini tomates (dressage)"
+            android:textColor="#d85142"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="20dp"
+            android:text="Basilic"
+            android:textColor="#d85142"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="20dp"
+            android:text="Cerfeuil"
+            android:textColor="#7d8083"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="20dp"
+            android:text="Coriandre"
+            android:textColor="#7d8083"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/shop_recipe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_margin="10dp"
+            android:text="@string/shop_recipe"
+            android:textColor="#7d8083"
+            android:textSize="25sp" />
+        
+    </LinearLayout>
+
+</LinearLayout>

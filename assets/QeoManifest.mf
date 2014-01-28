@@ -9,3 +9,4 @@ version = 1
 com::accenture::cdi::widen::data::Door = r
 com::accenture::cdi::widen::data::TeddySensor = r
 com::accenture::cdi::widen::data::BookSensor = r
+com::accenture::cdi::widen::data::TvRecipeSensor = r
