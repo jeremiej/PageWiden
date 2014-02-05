@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -23,6 +25,7 @@ import com.accenture.cdi.widen.station.model.NewScenario;
 import com.accenture.cdi.widen.station.model.Scenario;
 import com.accenture.cdi.widen.station.model.ScenarioBlock;
 import com.accenture.cdi.widen.station.model.ScenarioList;
+import com.accenture.cdi.widen.station.model.User;
 
 public class EditionScenarioBlockActivity extends Activity {
 
@@ -162,8 +165,7 @@ public class EditionScenarioBlockActivity extends Activity {
 	
 	public void addItemsObjectSpinner(){
 		mSpinnerObject = (Spinner)findViewById(R.id.scenario_edit_block_object_spinner);
-		MyObjectList sMyObjectList = new MyObjectList(getApplicationContext());
-		objectList = (ArrayList<Object>) sMyObjectList.getInRealmMyObjectArray();
+		objectList = MyObjectList.get(getApplicationContext()).getInRealmMyObjectArray();
 		customObjectSpinnerAdapter = new CustomObjectSpinnerAdapter(getApplicationContext(), R.layout.row_spinner_object, objectList);
 		customObjectSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		mSpinnerObject.setAdapter(customObjectSpinnerAdapter);
@@ -224,6 +226,22 @@ public class EditionScenarioBlockActivity extends Activity {
 	/**
 	 * Set up the {@link android.app.ActionBar}.
 	 */
+	@Override
+	public boolean onPrepareOptionsMenu(Menu menu) {
+	    MenuItem item = menu.findItem(R.id.action_user_name);
+		User mUser;
+		mUser = User.get(getApplicationContext());
+	    item.setTitle(mUser.getLogin());
+	    return super.onPrepareOptionsMenu(menu);
+	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
+
 	private void setupActionBar() {
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 	}

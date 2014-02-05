@@ -24,7 +24,9 @@ import com.accenture.cdi.widen.station.model.ScenarioListDownloadable;
 
 public class MaSpherePelucheFragment extends Fragment {
 	View v;
-	
+	TextView tvTeddyReady = null;
+	Button btAddScenario = null;
+
 	public int getVideoMode() {
 		return getArguments().getInt("launchVideo", 0);
 	}
@@ -32,63 +34,67 @@ public class MaSpherePelucheFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {		
 		v = inflater.inflate(R.layout.fragment_ma_sphere_peluche, container, false);	
-		
-		TextView tvLaunchVideo = (TextView)v.findViewById(R.id.peluche_launch_video);
-		Button btAddScenario = (Button)v.findViewById(R.id.peluche_add_scenario);
-//		final VideoView vvVideoPeluche = (VideoView) v.findViewById(R.id.peluche_video);
+
+		this.tvTeddyReady = (TextView) v.findViewById(R.id.peluche_launch_video);
+		this.btAddScenario = (Button) v.findViewById(R.id.peluche_add_scenario);
 
 		ScenarioList scenarioList = ScenarioList.get(getActivity());
-		if(!scenarioList.isDownloaded("Racontes moi ...")){
-			tvLaunchVideo.setVisibility(8);
-//			vvVideoPeluche.setVisibility(8);
+		if (!scenarioList.isDownloaded("Racontes moi ...")){
+			hideTeddyReadyText();
+			showDownloadButton();
 			btAddScenario.setOnClickListener(new OnClickListener() {
-				
+
 				@Override
 				public void onClick(View v) {
 					ScenarioListDownloadable scenarioList = ScenarioListDownloadable.get(getActivity());
-					if(!scenarioList.isScenarioInList("Racontes moi ..."))
+					if (!scenarioList.isScenarioInList("Racontes moi ...")) {
 						addScenarioPeluche();
+					}
+
+//					showTeddyReadyText();
+//					hideDownloadButton();
 					Intent i = new Intent(getActivity(), MainActivity.class);
 					i.putExtra("targetTab", 2);
 					startActivity(i);
 				}
 			});
 
-		}else{
-			if(getVideoMode()==1){		
-//				tvLaunchVideo.setVisibility(8);
-				btAddScenario.setVisibility(8);
-//				LinearLayout llPeluche = (LinearLayout) v.findViewById(R.id.layout_peluche);
-//				llPeluche.setBackgroundColor(Color.parseColor("#000000"));  
-//			    String uriPath = "android.resource://com.example.pagewiden/"+R.raw.k;
-//		        Uri uri = Uri.parse(uriPath);
-//		        vvVideoPeluche.setVideoURI(uri);
-//		        vvVideoPeluche.start();
-//		        vvVideoPeluche.setOnTouchListener(new OnTouchListener() {
-//					
-//					@Override
-//					public boolean onTouch(View v, MotionEvent event) {
-//						if(vvVideoPeluche.isPlaying()){
-//							vvVideoPeluche.pause();
-//						}else{
-//							vvVideoPeluche.start();
-//						}
-//						return false;
-//					}
-//				});
-			}else{
-//				vvVideoPeluche.setVisibility(8);
-				btAddScenario.setVisibility(8);
-			}			
+		} else {
+			showTeddyReadyText();
+			hideDownloadButton();		
 		}
-//		
+	
 		return v;
 	}
-	
+
+	public void showTeddyReadyText() {
+		if (this.tvTeddyReady != null) {
+			this.tvTeddyReady.setVisibility(View.VISIBLE);
+		}
+	}
+
+	public void hideTeddyReadyText() {
+		if (this.tvTeddyReady != null) {
+			this.tvTeddyReady.setVisibility(View.GONE);
+		}
+	}
+
+	public void showDownloadButton() {
+		if (this.btAddScenario != null) {
+			this.btAddScenario.setVisibility(View.VISIBLE);
+		}
+	}
+
+	public void hideDownloadButton() {
+		if (this.btAddScenario != null) {
+			this.btAddScenario.setVisibility(View.GONE);
+		}
+	}
+
 	public void addScenarioPeluche(){
 		
-		String scenarioTitle = "Racontes moi ...";
-		String scenarioDescription = "Laissez Zouzou l'ours lire ce livre à vos enfants";
+		String scenarioTitle = "Raconte-moi ...";
+		String scenarioDescription = "Faites lire un livre à vos enfants par Furby !";
 		String scenarioActivite = "Activé";
 		
 		Scenario scenario = new Scenario();
@@ -110,7 +116,7 @@ public class MaSpherePelucheFragment extends Fragment {
 		MyObjectAction aPeluche = new MyObjectAction();
 		aPeluche.setId(1);
 		aPeluche.setLabel("Détecter");
-		
+
 		MyObjectParam pPeluche = new MyObjectParam();
 		pPeluche.setId(1);
 		pPeluche.setLabel("Livre connecté");
@@ -120,7 +126,7 @@ public class MaSpherePelucheFragment extends Fragment {
 		scenarioDeclencheur.setMyObjectParam(pPeluche);
 		
 		scenario.setDeclencheur(scenarioDeclencheur);
-		
+
 		ScenarioBlock scenarioBlock = new ScenarioBlock();
 		
 		MyObject oPeluche1 = new MyObject();
@@ -130,18 +136,42 @@ public class MaSpherePelucheFragment extends Fragment {
 		
 		MyObjectAction aPeluche1 = new MyObjectAction();
 		aPeluche1.setId(2);
-		aPeluche1.setLabel("Envoyer");
+		aPeluche1.setLabel("Lire le livre");
 		
 		MyObjectParam pPeluche1 = new MyObjectParam();
 		pPeluche1.setId(1);
-		pPeluche1.setLabel("Vidéo à tablette");
+		pPeluche1.setLabel("En entier");
 		
 		scenarioBlock.setMyObject(oPeluche1);
 		scenarioBlock.setMyObjectAction(aPeluche1);
 		scenarioBlock.setMyObjectParam(pPeluche1);
-		
+
 		scenario.addBlocks(scenarioBlock);
+
+		// block 2
+		scenarioBlock = new ScenarioBlock();
+
+		MyObject oAmpoule1 = new MyObject();
+		Bitmap ampouleIcon = BitmapFactory.decodeResource(getResources(), R.drawable.ampoule);
+		oAmpoule1.setId(1);
+		oAmpoule1.setName("Ampoule");
+		oAmpoule1.setIcon(ampouleIcon);
 		
+		MyObjectAction aAmpoule1 = new MyObjectAction();
+		aAmpoule1.setId(2);
+		aAmpoule1.setLabel("Eteindre");
+		
+		MyObjectParam pAmpoule1 = new MyObjectParam();
+		pAmpoule1.setId(2);
+		pAmpoule1.setLabel("Sur 30 secondes");
+		
+		scenarioBlock.setMyObject(oAmpoule1);
+		scenarioBlock.setMyObjectAction(aAmpoule1);
+		scenarioBlock.setMyObjectParam(pAmpoule1);
+
+		scenario.addBlocks(scenarioBlock);
+
+		//
 		ScenarioListDownloadable scenarioList = ScenarioListDownloadable.get(getActivity());
 
 		scenarioList.addScenario(scenario);

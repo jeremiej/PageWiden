@@ -11,13 +11,13 @@ import com.accenture.cdi.widen.station.R;
 
 public class MyObjectList {
 	private Context mAppContext;
-	private ArrayList<Object> mMyObjectArray;
+	private ArrayList<MyObject> mMyObjectArray;
 	private static MyObjectList sMyObjectList;
 	
-	public MyObjectList(Context c){
+	private MyObjectList(Context c){
 		super();
 		mAppContext = c;
-		mMyObjectArray = new ArrayList<Object>();
+		mMyObjectArray = new ArrayList<MyObject>();
 		Resources res = mAppContext.getResources();
 		
 		// Création de l'objet Ampoule, ses actions et leurs paramètres
@@ -243,7 +243,7 @@ public class MyObjectList {
 
 		mMyObjectArray.add(oHorloge);
 		
-		// Création de l'objet Peluche, ses actions et leurs paramètres 
+		// Création de l'objet Peluche, ses actions et paramètres 
 		MyObject oPeluche = new MyObject();
 		oPeluche.setId(4);
 		oPeluche.setName("Peluche");
@@ -251,25 +251,33 @@ public class MyObjectList {
 		Bitmap pelucheIcon = BitmapFactory.decodeResource(res, R.drawable.peluche);
 		oPeluche.setIcon(pelucheIcon);
 		
-		MyObjectAction aPeluche = new MyObjectAction();
-		aPeluche.setId(1);
-		aPeluche.setLabel("Détecter");
-		
+		MyObjectAction aPeluche1 = new MyObjectAction();
+		aPeluche1.setId(1);
+		aPeluche1.setLabel("Détecter");
+
 		MyObjectParam pPeluche = new MyObjectParam();
 		pPeluche.setId(1);
 		pPeluche.setLabel("Livre connecté");
-		aPeluche.addParam(pPeluche);
+		aPeluche1.addParam(pPeluche);
 		
-		oPeluche.addAction(aPeluche);
+		oPeluche.addAction(aPeluche1);
 		
 		MyObjectAction aPeluche2 = new MyObjectAction();
 		aPeluche2.setId(2);
-		aPeluche2.setLabel("Lire");
+		aPeluche2.setLabel("Lire le livre");
 		
-		MyObjectParam pPeluche2 = new MyObjectParam();
-		pPeluche2.setId(1);
-		pPeluche2.setLabel("Livre");
-		aPeluche2.addParam(pPeluche2);		
+		MyObjectParam pPeluche21 = new MyObjectParam();
+		pPeluche21.setId(1);
+		pPeluche21.setLabel("En entier");
+		aPeluche2.addParam(pPeluche21);
+		MyObjectParam pPeluche22 = new MyObjectParam();
+		pPeluche22.setId(2);
+		pPeluche22.setLabel("Pendant 2 min.");
+		aPeluche2.addParam(pPeluche22);
+		MyObjectParam pPeluche23 = new MyObjectParam();
+		pPeluche23.setId(3);
+		pPeluche23.setLabel("Pendant 10 sec.");
+		aPeluche2.addParam(pPeluche23);
 		
 		oPeluche.addAction(aPeluche2);
 		mMyObjectArray.add(oPeluche);
@@ -282,19 +290,19 @@ public class MyObjectList {
 		return sMyObjectList;
 	}
 
-	public ArrayList<Object> getMyObjectArray() {
+	public ArrayList<MyObject> getMyObjectArray() {
 		return mMyObjectArray;
 	}
 	
-	public void setMyObjectArray(ArrayList<Object> myObjectArray) {
+	public void setMyObjectArray(ArrayList<MyObject> myObjectArray) {
 		mMyObjectArray = myObjectArray;
 	}
 
 	public ArrayList<Object> getInRealmMyObjectArray(){
 		ArrayList<Object> inRealm = new ArrayList<Object>();
 		for (int i = 0; i < this.mMyObjectArray.size(); i++) {
-			MyObject currentObject = (MyObject)this.mMyObjectArray.get(i);
-			if(currentObject.isInRealm())
+			MyObject currentObject = (MyObject) this.mMyObjectArray.get(i);
+			if (currentObject.isInRealm())
 				inRealm.add(currentObject);
 		}
 		return inRealm;

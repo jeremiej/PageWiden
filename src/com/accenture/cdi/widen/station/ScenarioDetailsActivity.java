@@ -171,11 +171,11 @@ public class ScenarioDetailsActivity extends Activity implements CompoundButton.
 	    item.setTitle(mUser.getLogin());
 	    return super.onPrepareOptionsMenu(menu);
 	}
-
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.scenario_details, menu);
+		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
 	

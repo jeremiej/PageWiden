@@ -31,7 +31,7 @@ public class CustomObjectSpinnerAdapter extends ArrayAdapter<Object> {
 		View row = convertView;
 		RecordHolder holder = null;
 		
-		MyObject myObject = (MyObject)data.get(position);
+		MyObject myObject = (MyObject) data.get(position);
 		
 		if (row == null) {
 			LayoutInflater inflater = LayoutInflater.from(context);

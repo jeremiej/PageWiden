@@ -11,60 +11,63 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.accenture.cdi.widen.station.MainActivity;
 import com.accenture.cdi.widen.station.R;
 import com.accenture.cdi.widen.station.ShopRecipeActivity;
 
 public class MaSphereTvFragment extends Fragment {
+
 	View v;
-	
+	LinearLayout llNewRecipe;
+	LinearLayout llTvRecipe;
+	TextView tvNoRecipe;
+
 	public int getArg() {
 		return getArguments().getInt("newRecipe", 0);
 	}
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {		
-		v = inflater.inflate(R.layout.fragment_ma_sphere_tv, container, false);	
-		final LinearLayout llNewRecipe = (LinearLayout)v.findViewById(R.id.new_recipe);
-		final LinearLayout llTvRecipe = (LinearLayout)v.findViewById(R.id.tv_recipe);
-		final TextView tvNoRecipe = (TextView)v.findViewById(R.id.no_recipe);
+		v = inflater.inflate(R.layout.fragment_ma_sphere_tv, container, false);
+		tvNoRecipe = (TextView) v.findViewById(R.id.no_recipe);
+		llNewRecipe = (LinearLayout) v.findViewById(R.id.new_recipe);
+		llTvRecipe = (LinearLayout) v.findViewById(R.id.tv_recipe);
+
 		
-		if(getArg() == 0){			
-			llNewRecipe.setVisibility(8);
-			
-			llTvRecipe.setVisibility(8);
-		}else{
-			tvNoRecipe.setVisibility(8);
-			
-			llTvRecipe.setVisibility(8);
+		if (getArg() == 0){			
+			stateNoNotification();
+		} else {
+			stateNotificationHere();
 		}
-		
-		Button btShowRecipe = (Button)v.findViewById(R.id.show_recipe);
+
+		// TST
+		stateShowRecipe();
+		///TST
+
+		Button btShowRecipe = (Button) v.findViewById(R.id.show_recipe);
 		btShowRecipe.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				llNewRecipe.setVisibility(8);
-				
-				llTvRecipe.setVisibility(0);
+				stateShowRecipe();
 			}
 		});
 		
-		Button btHideRecipe = (Button)v.findViewById(R.id.hide_recipe);
+		Button btHideRecipe = (Button) v.findViewById(R.id.hide_recipe);
 		btHideRecipe.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				llNewRecipe.setVisibility(8);
-				
-				tvNoRecipe.setVisibility(0);
+				stateNoNotification();
 			}
 		});
 		
-		Button btShopRecipe = (Button)v.findViewById(R.id.shop_recipe);
+		Button btShopRecipe = (Button) v.findViewById(R.id.shop_recipe);
 		btShopRecipe.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
+				((MainActivity) getActivity()).maSphereShop();
 				Intent i = new Intent(getActivity(), ShopRecipeActivity.class);
 				startActivity(i);
 			}
@@ -72,5 +75,22 @@ public class MaSphereTvFragment extends Fragment {
 		
 		return v;
 	}
-	
+
+	private void stateNoNotification() {
+		tvNoRecipe.setVisibility(View.VISIBLE);
+		llNewRecipe.setVisibility(View.GONE);
+		llTvRecipe.setVisibility(View.GONE);
+	}
+
+	private void stateNotificationHere() {
+		tvNoRecipe.setVisibility(View.GONE);
+		llNewRecipe.setVisibility(View.VISIBLE);
+		llTvRecipe.setVisibility(View.GONE);
+	}
+
+	private void stateShowRecipe() {
+		tvNoRecipe.setVisibility(View.GONE);
+		llNewRecipe.setVisibility(View.GONE);
+		llTvRecipe.setVisibility(View.VISIBLE);
+	}
 }

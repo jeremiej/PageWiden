@@ -23,7 +23,9 @@ import android.view.MenuItem;
 
 import com.accenture.cdi.widen.data.TeddySensor;
 import com.accenture.cdi.widen.data.TvRecipeSensor;
-import com.accenture.cdi.widen.station.fragments.MaSphereContainerFragment;
+import com.accenture.cdi.widen.station.fragments.MaSphereFragmentContainer;
+import com.accenture.cdi.widen.station.fragments.MaSphereFragmentShop;
+import com.accenture.cdi.widen.station.fragments.MaSphereFragmentViewAllObjects;
 import com.accenture.cdi.widen.station.fragments.MonStoreFragmentContainer;
 import com.accenture.cdi.widen.station.fragments.MonStoreFragmentViewOneScenario;
 import com.accenture.cdi.widen.station.fragments.MonStoreViewAllDownloadableScenarios;
@@ -44,10 +46,14 @@ public class MainActivity extends Activity implements
     private EventReader<TeddySensor> eventReaderTeddyHere = null;
     private EventReader<TvRecipeSensor> eventReaderTvRecipeHere = null;
 
-	MaSphereContainerFragment maSphereContainer;
+    MaSphereFragmentContainer maSphereContainer;
+	MaSphereFragmentViewAllObjects maSphereViewAllObjects;
+
 	MonStudioFragmentContainer monStudioContainer;
-	MonStoreFragmentContainer monStoreContainer;
 	MonStudioFragmentViewAllScenarios monStudioViewAllScenarios;
+
+	MonStoreFragmentContainer monStoreContainer;
+
 	int targetTab;
 
 	/**
@@ -165,10 +171,14 @@ public class MainActivity extends Activity implements
 		public Fragment getItem(int position) {
 	        switch (position) {
 		        case 0:
-		        	if (maSphereContainer == null) {
-		        		maSphereContainer = (MaSphereContainerFragment) Fragment.instantiate(getApplicationContext(), MaSphereContainerFragment.class.getName());
+		        	if (maSphereViewAllObjects == null) {
+		        		maSphereViewAllObjects = (MaSphereFragmentViewAllObjects) Fragment.instantiate(getApplicationContext(), MaSphereFragmentViewAllObjects.class.getName());
 		        	}
-		        	return maSphereContainer;
+		        	return maSphereViewAllObjects;
+//		        	if (maSphereContainer == null) {
+//		        		maSphereContainer = (MaSphereFragmentContainer) Fragment.instantiate(getApplicationContext(), MaSphereFragmentContainer.class.getName());
+//		        	}
+//		        	return maSphereContainer;
 		        case 1:
 		        	if (monStudioContainer == null) {
 		        		monStudioContainer = (MonStudioFragmentContainer) Fragment.instantiate(getApplicationContext(), MonStudioFragmentContainer.class.getName());
@@ -270,7 +280,7 @@ public class MainActivity extends Activity implements
 	}
 
 	private void onTeddyHere() {
-		maSphereContainer.onTeddyHere();
+		maSphereViewAllObjects.onTeddyHere();
 	}
 	
 	// State and Event listeners tv recipe
@@ -288,7 +298,23 @@ public class MainActivity extends Activity implements
 	}
 
 	private void onTvRecipeHere() {
-		maSphereContainer.onTvRecipeHere();
+		maSphereViewAllObjects.onTvRecipeHere();
+	}
+
+	// Manage fragments in "Ma Sphère"
+	public void maSphereViewAllObjects() {
+		maSphereViewAllObjects = new MaSphereFragmentViewAllObjects();
+		FragmentTransaction transaction = getFragmentManager().beginTransaction();
+		transaction.replace(R.id.ma_sphere_container, maSphereViewAllObjects);
+		transaction.commit();
+		refreshMaSphereDisplayedScenarios();
+	}
+
+	public void maSphereShop() {
+		MaSphereFragmentShop fragment = new MaSphereFragmentShop();
+		FragmentTransaction transaction = getFragmentManager().beginTransaction();
+		transaction.replace(R.id.ma_sphere_container, fragment);
+		transaction.commit();
 	}
 
 	// Manage fragments in "Mon Studio"
@@ -316,7 +342,7 @@ public class MainActivity extends Activity implements
 		startActivityForResult(i, START_ACTIVITY_CREATE_SCENARIO);
 	}
 
-	// Mon Store
+	// Manage fragments in "Mon Store"
 	public void monStoreViewAllDownloadableScenarios() {
 		MonStoreViewAllDownloadableScenarios fragment = new MonStoreViewAllDownloadableScenarios();
 		FragmentTransaction transaction = getFragmentManager().beginTransaction();
@@ -336,8 +362,8 @@ public class MainActivity extends Activity implements
 	}
 
 	public void refreshMaSphereDisplayedScenarios() {
-		if (maSphereContainer != null) {
-			maSphereContainer.refreshScenarioListFragment();
+		if (maSphereViewAllObjects != null) {
+			maSphereViewAllObjects.refreshScenarioListFragment();
 		}
 	}
 

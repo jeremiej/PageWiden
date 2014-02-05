@@ -17,21 +17,21 @@
     
     <TextView
         android:id="@+id/no_recipe"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:text="@string/no_recipe"
+        android:text="@string/tv_no_notification"
         android:textColor="#7d8083"
         android:textSize="25sp" />
 
     <LinearLayout
         android:id="@+id/new_recipe"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical" >
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:text="@string/tv_new_recipe"
@@ -39,7 +39,7 @@
             android:textSize="25sp" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal" 
             android:paddingLeft="10dp"
@@ -47,8 +47,8 @@
 
             <Button
                 android:id="@+id/show_recipe"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="@string/tv_show_recipe"
@@ -57,8 +57,8 @@
 
             <Button
                 android:id="@+id/hide_recipe"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="@string/tv_hide_recipe"
@@ -71,13 +71,13 @@
 
     <LinearLayout
         android:id="@+id/tv_recipe"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical" >
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:padding="10dp"
             android:text="@string/tv_new_recipe_title"
             android:textColor="#7d8083"
@@ -85,65 +85,81 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:paddingLeft="20dp"
-            android:text="2 belles tomates cœur de bœuf"
+            android:text="125 g. de farine complète"
+            android:textColor="#7d8083"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:text="125 g de farine blanche"
+            android:textColor="#7d8083"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:text="14 cl. de lait"
             android:textColor="#d85142"
             android:textSize="20sp" />
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:paddingLeft="20dp"
-            android:text="Piment d’espelette"
-            android:textColor="#7d8083"
-            android:textSize="20sp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingLeft="20dp"
-            android:text="Sel, poivre"
-            android:textColor="#7d8083"
-            android:textSize="20sp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingLeft="20dp"
-            android:text="1 feuille et demi de gélatine"
-            android:textColor="#7d8083"
-            android:textSize="20sp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingLeft="20dp"
-            android:text="6 mini tomates (dressage)"
+            android:text="50 g. de beurre"
             android:textColor="#d85142"
             android:textSize="20sp" />
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:paddingLeft="20dp"
-            android:text="Basilic"
+            android:text="1 jaune d'oeuf"
             android:textColor="#d85142"
             android:textSize="20sp" />
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:paddingLeft="20dp"
-            android:text="Cerfeuil"
+            android:text="10 g. de levure boulangère"
             android:textColor="#7d8083"
             android:textSize="20sp" />
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:paddingLeft="20dp"
-            android:text="Coriandre"
+            android:text="5 g. de sel"
+            android:textColor="#7d8083"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:text="5 g. de sucre"
+            android:textColor="#7d8083"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:text="2 oignons"
+            android:textColor="#d85142"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:text="Moutarde, persil, estragon"
             android:textColor="#7d8083"
             android:textSize="20sp" />
 

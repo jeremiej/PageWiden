@@ -24,13 +24,13 @@ public class ScenarioListDownloadable {
 		Bitmap tasseIcon = BitmapFactory.decodeResource(res, R.drawable.tasse);
 		Bitmap ampouleIcon = BitmapFactory.decodeResource(res, R.drawable.ampoule);
 		Bitmap chauffageIcon = BitmapFactory.decodeResource(res, R.drawable.chauffage);
-		
+
 		Bitmap indicateurBleu = BitmapFactory.decodeResource(res, R.drawable.indicateur_bleu);
 		Bitmap indicateurGris = BitmapFactory.decodeResource(res, R.drawable.indicateur_gris);
 		
 		// Scenario 1
 		String scenarioTitle1 = "Réveil en douceur";
-		String scenarioDescription1 = "Commencez la journée tranquillement en vous réveillant sur une lumière douce. Votre café est prêt!";
+		String scenarioDescription1 = "Commencez la journée tranquillement en vous réveillant sur une lumière douce. Votre café est prêt !";
 		String scenarioActivite1 = "Activé";
 
 		Scenario scenario1 = new Scenario();
@@ -106,8 +106,8 @@ public class ScenarioListDownloadable {
 		this.addScenario(scenario1);
 				
 		//Scenario2
-		String scenarioTitle2 = "Au boulot!";
-		String scenarioDescription2 = "Il ne faut pas être en retard, votre réveil sonnera à sa puissance maximum pendant 5 minutes. Mais votre salle de bain sera déjà chauffée avant que vous n'y arriviez!";
+		String scenarioTitle2 = "Au boulot !";
+		String scenarioDescription2 = "Il ne faut pas être en retard, votre réveil sonnera à sa puissance maximum pendant 5 minutes. Mais votre salle de bain sera déjà chauffée avant que vous n'y arriviez !";
 		String scenarioActivite2 = "Désactivé";
 		
 		Scenario scenario2 = new Scenario();

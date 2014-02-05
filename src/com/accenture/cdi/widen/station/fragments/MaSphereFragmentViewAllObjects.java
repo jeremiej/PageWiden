@@ -1,13 +1,10 @@
 package com.accenture.cdi.widen.station.fragments;
 
-import java.util.ArrayList;
-
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.os.Bundle;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +13,7 @@ import com.accenture.cdi.widen.station.R;
 import com.accenture.cdi.widen.station.model.MyObject;
 import com.accenture.cdi.widen.station.model.MyObjectList;
 
-public class MaSphereContainerFragment extends Fragment {
+public class MaSphereFragmentViewAllObjects extends Fragment {
 	
 	private MaSphereWebcamFragment mWebcamFragment = null;
 	private MaSphereBarometreFragment mBarometreFragment = null;
@@ -30,7 +27,7 @@ public class MaSphereContainerFragment extends Fragment {
 	public static final int TOAST_ID_BOOK_HERE = 1;
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.fragment_ma_sphere_container, container, false);
+		View v = inflater.inflate(R.layout.fragment_ma_sphere_view_all, container, false);
 		
 		this.mWebcamFragment = new MaSphereWebcamFragment();
 		this.mBarometreFragment = new MaSphereBarometreFragment();
@@ -49,8 +46,7 @@ public class MaSphereContainerFragment extends Fragment {
 		transaction.add(R.id.tv_container, this.mTvFragment);
 		
 		MyObjectList myObjectList = MyObjectList.get(getActivity());
-		ArrayList<Object> objectArray = myObjectList.getMyObjectArray();
-		MyObject peluche = (MyObject) objectArray.get(3);
+		MyObject peluche = myObjectList.getMyObjectArray().get(3);
 		if (peluche.isInRealm()){
 	    	Bundle arguments = new Bundle();
 	    	arguments.putInt("launchVideo", 0);
@@ -67,7 +63,7 @@ public class MaSphereContainerFragment extends Fragment {
 	public void displayDialog() {
 		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
 
-		alertDialogBuilder.setTitle("Nouvel objet détecté!");
+		alertDialogBuilder.setTitle("Nouvel objet détecté !");
 
 		alertDialogBuilder
 				.setMessage(R.string.teddy_accept_deny)
@@ -75,12 +71,8 @@ public class MaSphereContainerFragment extends Fragment {
 				.setPositiveButton("Oui",
 						new DialogInterface.OnClickListener() {
 							public void onClick(DialogInterface dialog, int id) {
-								MyObjectList myObjectList = MyObjectList.get(getActivity());
-								ArrayList<Object> objectArray = myObjectList.getMyObjectArray();
-								MyObject peluche = (MyObject)objectArray.get(3);
+								MyObject peluche = MyObjectList.get(getActivity()).getMyObjectArray().get(3);
 								peluche.setInRealm(true);
-								objectArray.set(3, peluche);
-								myObjectList.setMyObjectArray(objectArray);
 								
 								FragmentTransaction transaction = getFragmentManager().beginTransaction();
 						    	Bundle arguments = new Bundle();
@@ -103,8 +95,7 @@ public class MaSphereContainerFragment extends Fragment {
 
 	public void onTeddyHere() {
 		MyObjectList myObjectList = MyObjectList.get(getActivity());
-		ArrayList<Object> objectArray = myObjectList.getMyObjectArray();
-		MyObject peluche = (MyObject) objectArray.get(3);
+		MyObject peluche = myObjectList.getMyObjectArray().get(3);
 		if(!peluche.isInRealm()){
 			displayDialog();
 		}
@@ -135,6 +126,6 @@ public class MaSphereContainerFragment extends Fragment {
     	mTvFragment.setArguments(arguments);
     	transaction = getFragmentManager().beginTransaction();
     	transaction.replace(R.id.tv_container, mTvFragment);
-		transaction.commit();
+		transaction.commitAllowingStateLoss();
 	}
 }
